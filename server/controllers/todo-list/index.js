@@ -18,11 +18,7 @@ const getTodoListController = async (req, res) => {
 const deleteTodoItemController = async (req, res) => {
   const { id } = req.body;
   await deleteItem(id);
-  res.status(200).json({
-    jsonrpc: '2.0',
-    result: {},
-    id,
-  });
+  res.status(200).json({ id });
 };
 
 const createTodoItemPostController = async (req, res) => {
