@@ -1,20 +1,21 @@
 @import "@wildberries/ui-kit/lib/styles/constants.module.scss";
 @import "@wildberries/ui-kit/lib/styles/media.module.scss";
 
-.Main {
+.Home-page {
   background-color: #e5e5e5;
   box-sizing: border-box;
   height: 100vh;
 
-  &__wrapper {
+  &__card-wrapper {
     box-sizing: border-box;
     padding: 32px;
   }
 }
 
 @media #{$tablet} {
-  .Main {
-    &__wrapper {
+  .Home-page {
+
+    &__card-wrapper {
       display: flex;
       justify-content: center;
       padding: 24px;
@@ -24,16 +25,16 @@
 }
 
 @media #{$mobile} {
-  .Main {
-    &__wrapper {
+  .Home-page {
+    &__card-wrapper {
       padding: 16px;
     }
   }
 }
 
 @media #{$mobile-small} {
-  .Main {
-    &__wrapper {
+  .Home-page {
+    &__card-wrapper {
       padding: 8px;
     }
   }
