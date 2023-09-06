@@ -18,14 +18,14 @@ database
     todoList: [
       {
         id: 'c8ab1e82-afb5-464e-9c84-dc6b311da0e7',
-        name: 'Настроить окружение',
+        title: 'Настроить окружение',
         description:
           'Рабочая учетка, vpn, права админа, terminal, git, gitlab, nvm, vscode и т.д.',
         createDate: '2023-09-04T11:13:15.126Z',
       },
       {
         id: 'c8ab1e82-afb5-464e-9c84-dc6b312da0e3',
-        name: 'Что-то сделать',
+        title: 'Что-то сделать',
         description: 'Описание того, что надо сделать',
         createDate: '2023-09-04T11:16:45.126Z',
       },
@@ -53,10 +53,10 @@ const createItem = async (body) => {
   return newItem;
 };
 const updateItem = async (body) => {
-  const { id, name, description } = body;
+  const { id, title, description } = body;
   const item = await todoDataBase
     .find({ id })
-    .assign({ name, description })
+    .assign({ title, description })
     .write();
 
   return item;
