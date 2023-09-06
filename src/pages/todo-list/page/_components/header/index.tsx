@@ -22,6 +22,8 @@ export const Header = memo(() => {
     [locale],
   );
 
+  // TODO решить что делать с хедером
+
   return (
     <div className={cn(`${BLOCK_NAME}`)}>
       <div className={cn(`${BLOCK_NAME}__main`)}>
@@ -34,23 +36,9 @@ export const Header = memo(() => {
             src={mobileHref}
           />
         </picture>
-        <div className={cn(`${BLOCK_NAME}__information-block`)}>
-          <div className={cn(`${BLOCK_NAME}__notifications`)} />
-          <div className={cn(`${BLOCK_NAME}__informations`)} />
-          <div className={cn(`${BLOCK_NAME}__divider`)} />
-          <div className={cn(`${BLOCK_NAME}__supplier-name`)} />
-        </div>
+        <div className={cn(`${BLOCK_NAME}__information-block`)} />
       </div>
-      <div className={cn(`${BLOCK_NAME}__menu`)}>
-        <div className={cn(`${BLOCK_NAME}__menu-item`)} />
-        <div className={cn(`${BLOCK_NAME}__menu-item`)} />
-        <div className={cn(`${BLOCK_NAME}__menu-item`)} />
-        <div className={cn(`${BLOCK_NAME}__menu-item`)} />
-        <div className={cn(`${BLOCK_NAME}__menu-item`)} />
-        <div className={cn(`${BLOCK_NAME}__menu-item`)} />
-        <div className={cn(`${BLOCK_NAME}__menu-item`)} />
-        <div className={cn(`${BLOCK_NAME}__menu-item`)} />
-      </div>
+      <div className={cn(`${BLOCK_NAME}__menu`)} />
     </div>
   );
 });

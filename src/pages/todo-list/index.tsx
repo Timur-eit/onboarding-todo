@@ -17,7 +17,7 @@ const action = async ({ store }) => {
   });
 
   return {
-    title: 'Home',
+    title: 'Onboarding Todo list',
     content: (
       <AppLayout>
         <RouteNode nodeName={pageNode}>

@@ -1,7 +1,7 @@
 @import "@wildberries/ui-kit/lib/styles/constants.module.scss";
 @import "@wildberries/ui-kit/lib/styles/media.module.scss";
 
-.Card {
+.List {
   align-items: center;
   background-color: $White;
   box-sizing: border-box;
@@ -9,11 +9,11 @@
   height: 438px;
   justify-content: center;
 
-  &__text-wrapper {
+  &__content-wrapper {
     width: 546px;
   }
 
-  &__text {
+  &__content {
     display: flex;
     justify-content: center;
 
@@ -28,15 +28,15 @@
 }
 
 @media #{$tablet} {
-  .Card {
+  .List {
     width: 100%;
 
-    &__text-wrapper {
+    &__content-wrapper {
       padding: 0 40px;
       width: 100%;
     }
 
-    &__text {
+    &__content {
       &:first-child {
         padding-bottom: 24px;
       }
@@ -45,15 +45,15 @@
 }
 
 @media #{$mobile} {
-  .Card {
+  .List {
     width: 100%;
 
-    &__text-wrapper {
+    &__content-wrapper {
       padding: 0;
       width: 300px;
     }
 
-    &__text {
+    &__content {
       &:first-child {
         padding-bottom: 16px;
       }
