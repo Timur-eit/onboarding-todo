@@ -8,9 +8,9 @@ const {
 
 const todoListRouter = express.Router();
 
-todoListRouter.get('/', getTodoListController);
-todoListRouter.delete('/', deleteTodoItemController);
-todoListRouter.post('/', createTodoItemPostController);
-todoListRouter.put('/', updateTodoItemPutController);
+todoListRouter.get('/get-all', getTodoListController);
+todoListRouter.delete('/delete-item', deleteTodoItemController);
+todoListRouter.post('/create-item', createTodoItemPostController);
+todoListRouter.put('/update-item', updateTodoItemPutController);
 
 module.exports.todoListRouter = todoListRouter;
