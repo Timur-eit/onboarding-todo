@@ -10,6 +10,7 @@ const cn = classnames.bind(styles);
 
 const BLOCK_NAME = 'Home-page';
 
+// todo добавить реализацию лоадера (после подключения redux)
 export const Page = memo(() => (
   <div className={cn(BLOCK_NAME)} data-page="home-page">
     <MainLayout>

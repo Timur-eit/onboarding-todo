@@ -5,14 +5,11 @@ import styles from './index.module.scss';
 const cn = classnames.bind(styles);
 
 type PropsType = {
-  className?: string;
   children: ReactNode;
 };
 
 const BLOCK_NAME = 'Main';
 
-export const MainLayout = memo(({ className, children }: PropsType) => (
-  <div className={cn(`${className} ${BLOCK_NAME}`)}>
-    <div className={cn(`${BLOCK_NAME}__wrapper`)}>{children}</div>
-  </div>
+export const MainLayout = memo(({ children }: PropsType) => (
+  <div className={cn(`${BLOCK_NAME}`)}>{children}</div>
 ));

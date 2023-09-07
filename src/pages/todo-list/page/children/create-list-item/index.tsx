@@ -6,9 +6,9 @@ import reducerUI, {
   MODULE_REDUCER_NAME as reducerUIName,
 } from '@/_redux/ui-module';
 import { Page } from './page';
-import { TODO_LIST_PAGE_NAME } from './page/_constants';
+import { CREATE_LIST_ITEM_PAGE_NAME } from './_constants';
 
-const pageNode = TODO_LIST_PAGE_NAME;
+const pageNode = CREATE_LIST_ITEM_PAGE_NAME;
 
 const action = async ({ store }) => {
   injectAsyncReducer({
@@ -18,7 +18,7 @@ const action = async ({ store }) => {
   });
 
   return {
-    title: 'Todo',
+    title: 'CreateNewItem',
     content: (
       <AppLayout>
         <RouteNode nodeName={pageNode}>

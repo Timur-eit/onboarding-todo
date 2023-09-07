@@ -1,0 +1,24 @@
+@import "@wildberries/ui-kit/lib/styles/constants.module.scss";
+@import "@wildberries/ui-kit/lib/styles/media.module.scss";
+
+.List {
+  width: 100%;
+
+  &__control-panel {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+}
+
+@media #{$tablet} {
+  .List {
+    width: 100%;
+  }
+}
+
+@media #{$mobile} {
+  .List {
+    width: 100%;
+  }
+}

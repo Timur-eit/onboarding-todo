@@ -1,0 +1,25 @@
+@import "@wildberries/ui-kit/lib/styles/constants.module.scss";
+@import "@wildberries/ui-kit/lib/styles/media.module.scss";
+
+.ListItem {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: space-between;
+  &__description {
+    overflow-y: scroll;
+    width: 100%;
+  }
+}
+
+@media #{$tablet} {
+  .ListItem {
+    height: max-content;
+  }
+}
+
+@media #{$mobile} {
+  .ListItem {
+    height: max-content;
+  }
+}
