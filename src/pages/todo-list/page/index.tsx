@@ -18,13 +18,13 @@ import { List } from './_components/list';
 const BLOCK_NAME = 'Home-page';
 const cn = classnames.bind(styles);
 
-export type TProps = {
+type TProps = {
   listData: TNormalizedItemData[];
   isLoading: boolean;
   isError: boolean;
 };
 
-const Page = memo(({ listData, isLoading, isError }: TProps) => {
+const PageWrapper = memo(({ listData, isLoading, isError }: TProps) => {
   if (isLoading) {
     return <AppLoader />;
   }
@@ -50,4 +50,4 @@ const mapStateToProps = (state) => ({
   isError: getIsListError(state),
 });
 
-export default connect(mapStateToProps)(Page);
+export const Page = connect(mapStateToProps)(PageWrapper);

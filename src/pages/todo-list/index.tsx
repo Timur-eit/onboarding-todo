@@ -8,9 +8,10 @@ import { AppLayout } from '@/_layouts/app-layout';
 import reducerUI, {
   MODULE_REDUCER_NAME as reducerUIName,
 } from '@/_redux/ui-module';
-import Page from './page';
+import { Page } from './page';
 import { TODO_LIST_PAGE_NAME } from './page/_constants';
 import reducerTodoList, {
+  GET_TODO_LIST_DATA_WATCHER_SAGA_NAME,
   TODO_LIST_REDUCER_NAME,
   getTodoListDataAction,
 } from './_redux/todo-list';
@@ -33,7 +34,7 @@ const action = async ({ store }) => {
 
   injectAsyncSaga({
     store,
-    name: 'getTodoListDataWatcherSaga',
+    name: GET_TODO_LIST_DATA_WATCHER_SAGA_NAME,
     saga: getTodoListDataWatcherSaga,
   });
 
