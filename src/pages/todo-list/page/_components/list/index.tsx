@@ -2,12 +2,11 @@ import { memo, useEffect, useState } from 'react';
 import { Accordion, AccordionItemType, ButtonLink } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
 import { AppLoader } from '@/_components/app-loader';
-import { listBlockName } from '../../_constants';
 import { useList } from './use-list';
 import styles from './index.module.scss';
-import { PanelContent } from './_components/panel-content';
+import { ListItemContent } from './_components/list-item-content';
 
-// const BLOCK_NAME = 'List';
+const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
 
 export const List = memo(() => {
@@ -26,8 +25,8 @@ export const List = memo(() => {
   }
 
   return (
-    <div className={cn(`${listBlockName}`)}>
-      <div className={cn(`${listBlockName}__control-panel`)}>
+    <div className={cn(BLOCK_NAME)}>
+      <div className={cn(`${BLOCK_NAME}__control-panel`)}>
         {/* // TODO add функционал добавления нового записи */}
         <ButtonLink size="small" text="Добавить" variant="add" />
       </div>
@@ -35,7 +34,7 @@ export const List = memo(() => {
         hasRadioButton
         items={list as AccordionItemType[]}
         onSelect={({ name }) => setSelected(name)}
-        panelContent={PanelContent}
+        panelContent={ListItemContent}
         selectedValue={selected}
       />
     </div>
