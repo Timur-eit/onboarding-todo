@@ -5,7 +5,6 @@ import {
   CheckboxChangeEventType,
 } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
-import { AppLoader } from '@/_components/app-loader';
 import { useList } from './use-list';
 import styles from './index.module.scss';
 import { ListItemContent } from './_components/list-item-content';
@@ -14,7 +13,7 @@ const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
 
 export const List = memo(() => {
-  const { isLoading, list } = useList();
+  const { list } = useList();
   const [selected, setSelected] = useState('');
 
   const itemSelectHandler = useCallback(
@@ -28,10 +27,6 @@ export const List = memo(() => {
       setTimeout(() => setSelected(''), 500);
     }
   }, [selected]);
-
-  if (isLoading) {
-    return <AppLoader />;
-  }
 
   return (
     <div className={cn(BLOCK_NAME)}>
