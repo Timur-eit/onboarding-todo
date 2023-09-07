@@ -7,7 +7,7 @@ export type TListItem = {
   createDate: string;
 };
 
-export type TNormalizedItemData = AccordionItemType & TListItem;
+export type TNormalizedItemData = AccordionItemType;
 
 export type TTodoListState = {
   loadings: {

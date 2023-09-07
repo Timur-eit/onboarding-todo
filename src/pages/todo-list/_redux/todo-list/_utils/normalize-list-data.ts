@@ -3,12 +3,10 @@ import { TListItem } from '../types';
 
 export const normalizeListData = (
   responseData: TListItem[],
-): Array<AccordionItemType & TListItem> =>
+): Array<AccordionItemType> =>
   responseData.map(({ id, createDate, title, description }) => ({
     id,
-    createDate,
     title,
-    description,
     radioValue: id,
     content: {
       title,
