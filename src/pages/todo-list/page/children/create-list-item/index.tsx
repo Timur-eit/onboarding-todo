@@ -6,9 +6,9 @@ import reducerUI, {
   MODULE_REDUCER_NAME as reducerUIName,
 } from '@/_redux/ui-module';
 import { Page } from './page';
-import { CREATE_NEW_ITEM_MODULE } from './_constants';
+import { CREATE_LIST_ITEM_PAGE_NAME } from './_constants';
 
-const pageNode = CREATE_NEW_ITEM_MODULE;
+const pageNode = CREATE_LIST_ITEM_PAGE_NAME;
 
 const action = async ({ store }) => {
   injectAsyncReducer({
