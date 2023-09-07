@@ -1,5 +1,9 @@
-import { memo, useEffect, useState } from 'react';
-import { Accordion, ButtonLink } from '@wildberries/ui-kit';
+import { memo, useCallback, useEffect, useState } from 'react';
+import {
+  Accordion,
+  ButtonLink,
+  CheckboxChangeEventType,
+} from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
 import { AppLoader } from '@/_components/app-loader';
 import { useList } from './use-list';
@@ -12,6 +16,11 @@ const cn = classnames.bind(styles);
 export const List = memo(() => {
   const { isLoading, list } = useList();
   const [selected, setSelected] = useState('');
+
+  const itemSelectHandler = useCallback(
+    ({ name }: CheckboxChangeEventType) => setSelected(name),
+    [],
+  );
 
   useEffect(() => {
     if (selected) {
@@ -33,7 +42,7 @@ export const List = memo(() => {
       <Accordion
         hasRadioButton
         items={list}
-        onSelect={({ name }) => setSelected(name)}
+        onSelect={itemSelectHandler}
         panelContent={ListItemContent}
         selectedValue={selected}
       />
