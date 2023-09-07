@@ -4,35 +4,40 @@
 .Card {
   background-color: $White;
   box-sizing: border-box;
-  height: 438px;
+  margin: 2em 5em;
   padding: 1em;
 
   &__content-wrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 546px;
+    margin: 0 auto;
+    width: 600px;
+
   }
 }
 
 @media #{$tablet} {
   .Card {
-    width: 100%;
+    margin: 1em;
 
     &__content-wrapper {
+      max-width: 570px;
+      min-width: 300px;
       padding: 0 40px;
-      width: 100%;
+      width: fit-content;
     }
   }
 }
 
 @media #{$mobile} {
   .Card {
-    width: 100%;
+    margin: 1em;
+    width: 380px;
 
     &__content-wrapper {
       padding: 0;
-      width: 300px;
+      width: 350px;
     }
   }
 }

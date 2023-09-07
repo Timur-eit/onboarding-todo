@@ -1,0 +1,41 @@
+@import "@wildberries/ui-kit/lib/styles/constants.module.scss";
+@import "@wildberries/ui-kit/lib/styles/media.module.scss";
+
+.List {
+  width: 100%;
+
+  &__control-panel {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-between;
+    &__description {
+      overflow-y: scroll;
+      width: 100%;
+    }
+  }
+}
+
+@media #{$tablet} {
+  .List {
+    width: 100%;
+    &__item-content {
+      height: max-content;
+    }
+  }
+}
+
+@media #{$mobile} {
+  .List {
+    width: 100%;
+    &__item-content {
+      height: max-content;
+    }
+  }
+}

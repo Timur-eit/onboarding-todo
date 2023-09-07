@@ -5,36 +5,25 @@
   background-color: #e5e5e5;
   box-sizing: border-box;
   height: 100vh;
-
-  &__wrapper {
-    box-sizing: border-box;
-    padding: 32px;
-  }
+  padding: 32px;
+  width: 100vw;
 }
 
 @media #{$tablet} {
   .Main {
-    &__wrapper {
-      display: flex;
-      justify-content: center;
-      padding: 24px;
-      width: 100%;
-    }
+    padding: 24px;
   }
 }
 
 @media #{$mobile} {
   .Main {
-    &__wrapper {
-      padding: 16px;
-    }
+    padding: 16px;
   }
 }
 
 @media #{$mobile-small} {
   .Main {
-    &__wrapper {
-      padding: 8px;
-    }
+    padding: 8px;
+
   }
 }

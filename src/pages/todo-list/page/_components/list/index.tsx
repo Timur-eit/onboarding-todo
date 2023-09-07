@@ -1,66 +1,43 @@
-import { memo, useState } from 'react';
-import { Accordion, AccordionItemType } from '@wildberries/ui-kit';
+import { memo, useEffect, useState } from 'react';
+import { Accordion, AccordionItemType, ButtonLink } from '@wildberries/ui-kit';
+import classnames from 'classnames/bind';
 import { AppLoader } from '@/_components/app-loader';
+import { listBlockName } from '../../_constants';
 import { useList } from './use-list';
-import { PanelContent } from './helpers';
+import styles from './index.module.scss';
+import { PanelContent } from './_components/panel-content';
+
+// const BLOCK_NAME = 'List';
+const cn = classnames.bind(styles);
 
 export const List = memo(() => {
   const { isLoading, list } = useList();
-
-  // const ITEMS: Array<AccordionItemType> = [
-  //   {
-  //     id: '1',
-  //     title: 'Задание 1',
-  //     radioValue: 'first title',
-  //     content: {
-  //       title: 'first',
-  //       description: 'description one',
-  //       createDate: 'createDate 1',
-  //     },
-  //   },
-  //   {
-  //     id: '2',
-  //     title: 'second title',
-  //     radioValue: 'second title',
-  //     content: {
-  //       title: 'second',
-  //       description: 'description two',
-  //       createDate: 'createDate 2',
-  //     },
-  //   },
-  //   {
-  //     id: '3',
-  //     title: 'third title',
-  //     radioValue: 'third title',
-  //     content: {
-  //       title: 'third',
-  //       description: 'description three',
-  //       createDate: 'createDate 3',
-  //     },
-  //   },
-  // ];
-
-  // selectedValue?: string;
-  /** коллбек изменения радио */
-  // onSelect?: (selectedEvent: CheckboxChangeEventType) => void;
-
   const [selected, setSelected] = useState('');
+
+  useEffect(() => {
+    if (selected) {
+      // TODO функционал удаления
+      setTimeout(() => setSelected(''), 500);
+    }
+  }, [selected]);
 
   if (isLoading) {
     return <AppLoader />;
   }
 
   return (
-    <div className="">
-      <div className="">
-        <Accordion
-          hasRadioButton
-          items={list as AccordionItemType[]}
-          onSelect={({ name }) => setSelected(name)}
-          panelContent={PanelContent}
-          selectedValue={selected}
-        />
+    <div className={cn(`${listBlockName}`)}>
+      <div className={cn(`${listBlockName}__control-panel`)}>
+        {/* // TODO add функционал добавления нового записи */}
+        <ButtonLink size="small" text="Добавить" variant="add" />
       </div>
+      <Accordion
+        hasRadioButton
+        items={list as AccordionItemType[]}
+        onSelect={({ name }) => setSelected(name)}
+        panelContent={PanelContent}
+        selectedValue={selected}
+      />
     </div>
   );
 });

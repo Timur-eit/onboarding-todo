@@ -9,6 +9,7 @@ export type ConvertedListItem = ListItemType & {
   radioValue: string;
   content: {
     title: string;
+    createDate: string;
     description: string;
   };
 };
