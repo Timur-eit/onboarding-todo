@@ -4,8 +4,7 @@ import { Text } from '@wildberries/ui-kit';
 import { connect } from 'react-redux';
 import { MainLayout } from '@/_components/main-layout';
 import { Card } from '@/_components/card-layout';
-import { AppLoader } from '@/_components/app-loader';
-import { AppError } from '@/_components/app-error';
+import { AltContent } from '@/_components/alt-content';
 import {
   TNormalizedItemData,
   getLoadings,
@@ -25,22 +24,22 @@ type TProps = {
 };
 
 const PageWrapper = memo(({ listData, isLoading, isError }: TProps) => {
-  if (isLoading) {
-    return <AppLoader />;
-  }
-  if (isError) {
-    return <AppError />;
+  if (isLoading || isError) {
+    return <AltContent error={isError} loading={isLoading} />;
   }
 
   return (
-    <div className={cn(BLOCK_NAME)} data-page="home-page">
-      <MainLayout>
-        <Card>
-          <Text color="black" size="h1" text="Todo list" />
-          <List listData={listData} />
-        </Card>
-      </MainLayout>
-    </div>
+    !isLoading &&
+    !isError && (
+      <div className={cn(BLOCK_NAME)} data-page="home-page">
+        <MainLayout>
+          <Card>
+            <Text color="black" size="h1" text="Todo list" />
+            <List listData={listData} />
+          </Card>
+        </MainLayout>
+      </div>
+    )
   );
 });
 
