@@ -8,9 +8,9 @@ import { AppLoader } from '@/_components/app-loader';
 import { AppError } from '@/_components/app-error';
 import {
   TNormalizedItemData,
-  getIsListError,
-  getIsListLoading,
+  getLoadings,
   getListData,
+  getErrors,
 } from '../_redux/todo-list';
 import styles from './index.module.scss';
 import { List } from './_components/list';
@@ -46,8 +46,8 @@ const PageWrapper = memo(({ listData, isLoading, isError }: TProps) => {
 
 const mapStateToProps = (state) => ({
   listData: getListData(state),
-  isLoading: getIsListLoading(state),
-  isError: getIsListError(state),
+  isLoading: getLoadings(state).isListLoading,
+  isError: getErrors(state).isListError,
 });
 
 export const Page = connect(mapStateToProps)(PageWrapper);

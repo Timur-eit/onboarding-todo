@@ -7,14 +7,14 @@ import { TTodoListState } from './types';
 export const todoListStorageSelector = (store: DefaultRootState) =>
   store[TODO_LIST_REDUCER_NAME] || initialState;
 
-export const getIsListLoading = createSelector(
+export const getLoadings = createSelector(
   [todoListStorageSelector],
-  ({ isListLoading }: TTodoListState) => isListLoading,
+  ({ loadings }: TTodoListState) => loadings,
 );
 
-export const getIsListError = createSelector(
+export const getErrors = createSelector(
   [todoListStorageSelector],
-  ({ isListError }: TTodoListState) => isListError,
+  ({ errors }: TTodoListState) => errors,
 );
 
 export const getListData = createSelector(

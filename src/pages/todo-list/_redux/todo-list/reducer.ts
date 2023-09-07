@@ -9,8 +9,12 @@ import {
 import { TTodoListState } from './types';
 
 export const initialState: TTodoListState = {
-  isListLoading: false,
-  isListError: false,
+  loadings: {
+    isListLoading: false,
+  },
+  errors: {
+    isListError: false,
+  },
   listData: [],
 };
 
@@ -28,12 +32,18 @@ const reducer = (
     case SET_IS_LOADING_LIST:
       return {
         ...state,
-        isListLoading: payload,
+        loadings: {
+          ...state.loadings,
+          isListLoading: payload,
+        },
       };
     case SET_IS_ERROR_LIST:
       return {
         ...state,
-        isListError: payload,
+        errors: {
+          ...state.errors,
+          isListError: payload,
+        },
       };
     case SET_TODO_LIST_DATA:
       return {

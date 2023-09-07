@@ -10,7 +10,11 @@ export type TListItem = {
 export type TNormalizedItemData = AccordionItemType & TListItem;
 
 export type TTodoListState = {
-  isListLoading: boolean;
-  isListError: boolean;
+  loadings: {
+    isListLoading: boolean;
+  };
+  errors: {
+    isListError: boolean;
+  };
   listData: TNormalizedItemData[];
 };
