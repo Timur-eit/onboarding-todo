@@ -1,11 +1,11 @@
-export type ListItemType = {
+export type TListItem = {
   id?: string;
   title: string;
   description: string;
   createDate: string;
 };
 
-export type ConvertedListItem = ListItemType & {
+export type TConvertedListItem = TListItem & {
   radioValue: string;
   content: {
     title: string;

@@ -1,9 +1,9 @@
 import { AccordionItemType } from '@wildberries/ui-kit';
-import { ListItemType } from '../types';
+import { TListItem } from '../types';
 
 export const normalizeListData = (
-  responseData: ListItemType[],
-): Array<AccordionItemType & ListItemType> =>
+  responseData: TListItem[],
+): Array<AccordionItemType & TListItem> =>
   responseData.map(({ id, createDate, title, description }) => ({
     id,
     createDate,

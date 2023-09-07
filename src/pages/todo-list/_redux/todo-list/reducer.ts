@@ -6,9 +6,9 @@ import {
   setIsLoadingListAction,
   setTodoListDataAction,
 } from './actions';
-import { TodoListStateType } from './types';
+import { TTodoListState } from './types';
 
-export const initialState: TodoListStateType = {
+export const initialState: TTodoListState = {
   isListLoading: false,
   isListError: false,
   listData: [],
@@ -21,9 +21,9 @@ type ActionsType = ReturnType<
 >;
 
 const reducer = (
-  state: TodoListStateType = initialState,
+  state: TTodoListState = initialState,
   { type, payload }: ActionsType,
-): TodoListStateType => {
+): TTodoListState => {
   switch (type) {
     case SET_IS_LOADING_LIST:
       return {

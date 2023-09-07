@@ -1,16 +1,16 @@
 import { AccordionItemType } from '@wildberries/ui-kit';
 
-export type ListItemType = {
+export type TListItem = {
   id?: string;
   title: string;
   description: string;
   createDate: string;
 };
 
-export type NormalizedItemData = AccordionItemType & ListItemType;
+export type TNormalizedItemData = AccordionItemType & TListItem;
 
-export type TodoListStateType = {
+export type TTodoListState = {
   isListLoading: boolean;
   isListError: boolean;
-  listData: NormalizedItemData[];
+  listData: TNormalizedItemData[];
 };

@@ -1,9 +1,5 @@
 import { IResponse, RestRequest } from '@mihanizm56/fetch-api';
-import {
-  TodoItemCreateBodyType,
-  makeRequestConfig,
-} from './make-request-config';
+import { TTodoItemCreateBody, makeRequestConfig } from './make-request-config';
 
-export const createTodoItem = (
-  body: TodoItemCreateBodyType,
-): Promise<IResponse> => new RestRequest().postRequest(makeRequestConfig(body));
+export const createTodoItem = (body: TTodoItemCreateBody): Promise<IResponse> =>
+  new RestRequest().postRequest(makeRequestConfig(body));

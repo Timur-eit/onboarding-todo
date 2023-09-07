@@ -7,7 +7,7 @@ import { Card } from '@/_components/card-layout';
 import { AppLoader } from '@/_components/app-loader';
 import { AppError } from '@/_components/app-error';
 import {
-  NormalizedItemData,
+  TNormalizedItemData,
   getIsListError,
   getIsListLoading,
   getListData,
@@ -18,13 +18,13 @@ import { List } from './_components/list';
 const BLOCK_NAME = 'Home-page';
 const cn = classnames.bind(styles);
 
-export type PropsType = {
-  listData: NormalizedItemData[];
+export type TProps = {
+  listData: TNormalizedItemData[];
   isLoading: boolean;
   isError: boolean;
 };
 
-const Page = memo(({ listData, isLoading, isError }: PropsType) => {
+const Page = memo(({ listData, isLoading, isError }: TProps) => {
   if (isLoading) {
     return <AppLoader />;
   }
