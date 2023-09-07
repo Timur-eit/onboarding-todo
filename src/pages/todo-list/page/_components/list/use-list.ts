@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
+import { AccordionItemType } from '@wildberries/ui-kit';
 import { getTodoList } from '@/api/requests/get-todo-list-all';
-import { ConvertedListItem } from '../../_types/todo-model';
 import { normalizeListData } from './helpers';
+
+type NormalizedItemData = AccordionItemType;
 
 export const useList = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [list, setList] = useState<ConvertedListItem[]>([]);
+  const [list, setList] = useState<NormalizedItemData[]>([]);
 
   const fetchListData = useCallback(async () => {
     setIsLoading(true);

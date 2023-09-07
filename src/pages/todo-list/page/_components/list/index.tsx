@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from 'react';
-import { Accordion, AccordionItemType, ButtonLink } from '@wildberries/ui-kit';
+import { Accordion, ButtonLink } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
 import { AppLoader } from '@/_components/app-loader';
 import { useList } from './use-list';
@@ -32,7 +32,7 @@ export const List = memo(() => {
       </div>
       <Accordion
         hasRadioButton
-        items={list as AccordionItemType[]}
+        items={list}
         onSelect={({ name }) => setSelected(name)}
         panelContent={ListItemContent}
         selectedValue={selected}
