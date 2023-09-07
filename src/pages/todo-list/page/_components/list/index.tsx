@@ -5,15 +5,18 @@ import {
   CheckboxChangeEventType,
 } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
-import { useList } from './use-list';
+import { NormalizedItemData } from '@/pages/todo-list/_redux/todo-list/types';
 import styles from './index.module.scss';
 import { ListItemContent } from './_components/list-item-content';
 
 const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
 
-export const List = memo(() => {
-  const { list } = useList();
+type PropsType = {
+  listData: NormalizedItemData[];
+};
+
+export const List = memo(({ listData }: PropsType) => {
   const [selected, setSelected] = useState('');
 
   const itemSelectHandler = useCallback(
@@ -36,7 +39,7 @@ export const List = memo(() => {
       </div>
       <Accordion
         hasRadioButton
-        items={list}
+        items={listData}
         onSelect={itemSelectHandler}
         panelContent={ListItemContent}
         selectedValue={selected}
