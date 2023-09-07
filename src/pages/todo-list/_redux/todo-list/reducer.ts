@@ -2,8 +2,11 @@ import {
   SET_IS_ERROR_LIST,
   SET_IS_LOADING_LIST,
   SET_TODO_LIST_DATA,
+  setIsErrorListAction,
+  setIsLoadingListAction,
+  setTodoListDataAction,
 } from './actions';
-import { NormalizedItemData, TodoListStateType } from './types';
+import { TodoListStateType } from './types';
 
 export const initialState: TodoListStateType = {
   isListLoading: false,
@@ -11,10 +14,11 @@ export const initialState: TodoListStateType = {
   listData: [],
 };
 
-type ActionsType = {
-  type: string;
-  payload: NormalizedItemData[] | boolean;
-};
+type ActionsType = ReturnType<
+  | typeof setIsLoadingListAction
+  | typeof setIsErrorListAction
+  | typeof setTodoListDataAction
+>;
 
 const reducer = (
   state: TodoListStateType = initialState,
@@ -24,17 +28,17 @@ const reducer = (
     case SET_IS_LOADING_LIST:
       return {
         ...state,
-        isListLoading: payload as boolean,
+        isListLoading: payload,
       };
     case SET_IS_ERROR_LIST:
       return {
         ...state,
-        isListError: payload as boolean,
+        isListError: payload,
       };
     case SET_TODO_LIST_DATA:
       return {
         ...state,
-        listData: payload as NormalizedItemData[],
+        listData: payload,
       };
     default:
       return state;
