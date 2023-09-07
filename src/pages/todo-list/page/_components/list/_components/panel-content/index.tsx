@@ -14,7 +14,7 @@ export const PanelContent = memo(({ data }: PanelDataContentType) => {
         <Text color="purple" size="h3" text={data.description} />
       </div>
       <ButtonLink
-        // onClick={() => alert('delete')}
+        // переход на страницу редактирования
         size="small"
         text="Редактировать"
         variant="adaptive"
