@@ -1,3 +1,4 @@
+import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { TODO_LIST_PAGE_NAME, TODO_LIST_PAGE_PATH } from './page/_constants';
 import createNewListItem from './page/children/create-list-item/route';
 
@@ -6,8 +7,7 @@ export default {
   path: TODO_LIST_PAGE_PATH,
   loadAction: () => import('./index'),
   children: [createNewListItem],
-  // uncomment if you need translations
-  // i18n: {
-  //   namespaces: [appNamespace],
-  // },
+  i18n: {
+    namespaces: [APP_NAMESPACE],
+  },
 };
