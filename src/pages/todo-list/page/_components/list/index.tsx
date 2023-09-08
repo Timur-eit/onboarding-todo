@@ -5,15 +5,21 @@ import {
   CheckboxChangeEventType,
 } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
-import { useList } from './use-list';
+import { connect } from 'react-redux';
+import { TListItem } from '@/pages/todo-list/_redux/todo-list/types';
+import { getListData } from '@/pages/todo-list/_redux/todo-list';
 import styles from './index.module.scss';
 import { ListItemContent } from './_components/list-item-content';
+import { convertForAccordion } from './_utils/convert-data-for-accordion';
 
 const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
 
-export const List = memo(() => {
-  const { list } = useList();
+type TProps = {
+  listData: TListItem[];
+};
+
+export const ListWrapper = memo(({ listData }: TProps) => {
   const [selected, setSelected] = useState('');
 
   const itemSelectHandler = useCallback(
@@ -36,7 +42,7 @@ export const List = memo(() => {
       </div>
       <Accordion
         hasRadioButton
-        items={list}
+        items={convertForAccordion(listData)}
         onSelect={itemSelectHandler}
         panelContent={ListItemContent}
         selectedValue={selected}
@@ -44,3 +50,9 @@ export const List = memo(() => {
     </div>
   );
 });
+
+const mapStateToProps = (state) => ({
+  listData: getListData(state),
+});
+
+export const List = connect(mapStateToProps)(ListWrapper);

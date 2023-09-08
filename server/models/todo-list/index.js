@@ -19,15 +19,15 @@ database
       {
         id: 'c8ab1e82-afb5-464e-9c84-dc6b311da0e7',
         title: 'Настроить окружение',
+        createDate: '2023-09-04T11:13:15.126Z',
         description:
           'Рабочая учетка, vpn, права админа, terminal, git, gitlab, nvm, vscode и т.д.',
-        createDate: '2023-09-04T11:13:15.126Z',
       },
       {
         id: 'c8ab1e82-afb5-464e-9c84-dc6b312da0e3',
         title: 'Что-то сделать',
-        description: 'Описание того, что надо сделать',
         createDate: '2023-09-04T11:16:45.126Z',
+        description: 'Описание того, что надо сделать',
       },
     ],
   })
@@ -40,12 +40,13 @@ const getFullList = () => todoDataBase.value();
 const deleteItem = (id) => todoDataBase.remove({ id }).write();
 
 const createItem = async (body) => {
-  const { name, description } = body;
+  const { title, description } = body;
+
   const newItem = {
     id: uniqueId('todoId_'),
-    name,
-    description,
+    title,
     createDate: new Date().toISOString(),
+    description,
   };
 
   await todoDataBase.push(newItem).write();

@@ -1,17 +1,14 @@
 import { AccordionItemType } from '@wildberries/ui-kit';
-import { ListItemType } from '../../_types/todo-model';
+import { TListItem } from '@/pages/todo-list/_redux/todo-list';
 
-export const normalizeListData = (
-  responseData: ListItemType[],
+export const convertForAccordion = (
+  responseData: TListItem[],
 ): AccordionItemType[] =>
   responseData.map(({ id, createDate, title, description }) => ({
     id,
-    createDate,
     title,
-    description,
     radioValue: id,
     content: {
-      title,
       createDate,
       description,
     },
