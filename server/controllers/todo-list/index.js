@@ -7,12 +7,14 @@ const {
 
 const getTodoListController = async (req, res) => {
   const todoList = await getFullList();
-  res.status(200).json({
-    error: false,
-    errorText: '',
-    data: todoList,
-    additionalErrors: null,
-  });
+  setTimeout(() => {
+    res.status(200).json({
+      error: false,
+      errorText: '',
+      data: todoList,
+      additionalErrors: null,
+    });
+  }, 800);
 };
 
 const deleteTodoItemController = async (req, res) => {
