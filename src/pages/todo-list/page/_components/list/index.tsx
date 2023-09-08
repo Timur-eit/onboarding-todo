@@ -5,7 +5,7 @@ import {
   CheckboxChangeEventType,
 } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
-import { TNormalizedItemData } from '@/pages/todo-list/_redux/todo-list/types';
+import { TListItem } from '@/pages/todo-list/_redux/todo-list/types';
 import styles from './index.module.scss';
 import { ListItemContent } from './_components/list-item-content';
 
@@ -13,7 +13,7 @@ const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
 
 type TProps = {
-  listData: TNormalizedItemData[];
+  listData: TListItem[];
 };
 
 export const List = memo(({ listData }: TProps) => {

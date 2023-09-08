@@ -5,7 +5,6 @@ import {
   setIsLoadingListAction,
   setTodoListDataAction,
 } from '../actions';
-import { normalizeListData } from '../_utils/normalize-list-data';
 
 export function* getTodoListDataWorkerSaga() {
   try {
@@ -20,8 +19,7 @@ export function* getTodoListDataWorkerSaga() {
       throw new Error(errorText ?? data.error);
     }
 
-    const normalizedData = normalizeListData(data);
-    yield put(setTodoListDataAction(normalizedData));
+    yield put(setTodoListDataAction(data));
   } catch (error) {
     yield put(setIsErrorListAction(true));
   } finally {

@@ -1,10 +1,14 @@
 import { AccordionItemType } from '@wildberries/ui-kit';
 
 export type TListItem = {
-  id?: string;
+  id: string;
+  radioValue: string;
   title: string;
-  description: string;
-  createDate: string;
+  content: {
+    title: string;
+    description: string;
+    createDate: string;
+  };
 };
 
 export type TNormalizedItemData = AccordionItemType;

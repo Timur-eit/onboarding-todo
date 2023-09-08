@@ -18,16 +18,24 @@ database
     todoList: [
       {
         id: 'c8ab1e82-afb5-464e-9c84-dc6b311da0e7',
+        radioValue: 'c8ab1e82-afb5-464e-9c84-dc6b311da0e7',
         title: 'Настроить окружение',
-        description:
-          'Рабочая учетка, vpn, права админа, terminal, git, gitlab, nvm, vscode и т.д.',
-        createDate: '2023-09-04T11:13:15.126Z',
+        content: {
+          title: 'Настроить окружение',
+          description:
+            'Рабочая учетка, vpn, права админа, terminal, git, gitlab, nvm, vscode и т.д.',
+          createDate: '2023-09-04T11:13:15.126Z',
+        },
       },
       {
         id: 'c8ab1e82-afb5-464e-9c84-dc6b312da0e3',
+        radioValue: 'c8ab1e82-afb5-464e-9c84-dc6b312da0e3',
         title: 'Что-то сделать',
-        description: 'Описание того, что надо сделать',
-        createDate: '2023-09-04T11:16:45.126Z',
+        content: {
+          title: 'Что-то сделать',
+          description: 'Описание того, что надо сделать',
+          createDate: '2023-09-04T11:16:45.126Z',
+        },
       },
     ],
   })
@@ -40,12 +48,18 @@ const getFullList = () => todoDataBase.value();
 const deleteItem = (id) => todoDataBase.remove({ id }).write();
 
 const createItem = async (body) => {
-  const { name, description } = body;
+  const { title, description } = body;
+
+  const id = uniqueId('todoId_');
   const newItem = {
-    id: uniqueId('todoId_'),
-    name,
-    description,
-    createDate: new Date().toISOString(),
+    id,
+    radioValue: id,
+    title,
+    content: {
+      title,
+      description,
+      createDate: new Date().toISOString(),
+    },
   };
 
   await todoDataBase.push(newItem).write();
@@ -54,9 +68,12 @@ const createItem = async (body) => {
 };
 const updateItem = async (body) => {
   const { id, title, description } = body;
-  const item = await todoDataBase
-    .find({ id })
-    .assign({ title, description })
+  const item = todoDataBase.find({ id });
+  const { createDate } = item.value().content;
+
+  await item
+    .assign({ title })
+    .assign({ content: { title, description, createDate } })
     .write();
 
   return item;

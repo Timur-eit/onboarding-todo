@@ -6,7 +6,7 @@ import { MainLayout } from '@/_components/main-layout';
 import { Card } from '@/_components/card-layout';
 import { AltContent } from '@/_components/alt-content';
 import {
-  TNormalizedItemData,
+  TListItem,
   getLoadings,
   getListData,
   getErrors,
@@ -18,7 +18,7 @@ const BLOCK_NAME = 'Home-page';
 const cn = classnames.bind(styles);
 
 type TProps = {
-  listData: TNormalizedItemData[];
+  listData: TListItem[];
   isLoading: boolean;
   isError: boolean;
 };
