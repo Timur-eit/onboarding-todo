@@ -18,24 +18,16 @@ database
     todoList: [
       {
         id: 'c8ab1e82-afb5-464e-9c84-dc6b311da0e7',
-        radioValue: 'c8ab1e82-afb5-464e-9c84-dc6b311da0e7',
         title: 'Настроить окружение',
-        content: {
-          title: 'Настроить окружение',
-          description:
-            'Рабочая учетка, vpn, права админа, terminal, git, gitlab, nvm, vscode и т.д.',
-          createDate: '2023-09-04T11:13:15.126Z',
-        },
+        createDate: '2023-09-04T11:13:15.126Z',
+        description:
+          'Рабочая учетка, vpn, права админа, terminal, git, gitlab, nvm, vscode и т.д.',
       },
       {
         id: 'c8ab1e82-afb5-464e-9c84-dc6b312da0e3',
-        radioValue: 'c8ab1e82-afb5-464e-9c84-dc6b312da0e3',
         title: 'Что-то сделать',
-        content: {
-          title: 'Что-то сделать',
-          description: 'Описание того, что надо сделать',
-          createDate: '2023-09-04T11:16:45.126Z',
-        },
+        createDate: '2023-09-04T11:16:45.126Z',
+        description: 'Описание того, что надо сделать',
       },
     ],
   })
@@ -50,16 +42,11 @@ const deleteItem = (id) => todoDataBase.remove({ id }).write();
 const createItem = async (body) => {
   const { title, description } = body;
 
-  const id = uniqueId('todoId_');
   const newItem = {
-    id,
-    radioValue: id,
+    id: uniqueId('todoId_'),
     title,
-    content: {
-      title,
-      description,
-      createDate: new Date().toISOString(),
-    },
+    createDate: new Date().toISOString(),
+    description,
   };
 
   await todoDataBase.push(newItem).write();
@@ -68,12 +55,9 @@ const createItem = async (body) => {
 };
 const updateItem = async (body) => {
   const { id, title, description } = body;
-  const item = todoDataBase.find({ id });
-  const { createDate } = item.value().content;
-
-  await item
-    .assign({ title })
-    .assign({ content: { title, description, createDate } })
+  const item = await todoDataBase
+    .find({ id })
+    .assign({ title, description })
     .write();
 
   return item;

@@ -1,5 +1,5 @@
 import { BaseAction, IReduxAction } from '@mihanizm56/redux-core-modules';
-import { TNormalizedItemData, TTodoListState } from './types';
+import { TTodoListState, TListItem } from './types';
 
 export const SET_LOADINGS = 'SET_LOADINGS';
 export const setLoadingsAction: IReduxAction<
@@ -27,10 +27,9 @@ export const getListAction: BaseAction = () => ({
 });
 
 export const SET_LIST = 'SET_LIST';
-export const setListAction: IReduxAction<
-  TNormalizedItemData[],
-  typeof SET_LIST
-> = (payload) => ({
+export const setListAction: IReduxAction<TListItem[], typeof SET_LIST> = (
+  payload,
+) => ({
   type: SET_LIST,
   payload,
 });
