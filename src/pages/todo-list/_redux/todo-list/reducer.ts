@@ -6,18 +6,21 @@ import {
   setListAction,
   SET_LIST,
 } from './actions';
-import { ETodoLoadErrorState, TTodoListState } from './types';
-
-const initialLoadingErrorState = {
-  [ETodoLoadErrorState.GET_ALL]: false,
-  [ETodoLoadErrorState.ADD_ITEM]: false,
-  [ETodoLoadErrorState.UPDATE_ITEM]: false,
-  [ETodoLoadErrorState.DELETE_ITEM]: false,
-};
+import { ETodoErrors, ETodoLoadings, TTodoListState } from './types';
 
 export const initialState: TTodoListState = {
-  loadings: { ...initialLoadingErrorState },
-  errors: { ...initialLoadingErrorState },
+  loadings: {
+    [ETodoLoadings.GET_ALL]: false,
+    [ETodoLoadings.ADD_ITEM]: false,
+    [ETodoLoadings.UPDATE_ITEM]: false,
+    [ETodoLoadings.DELETE_ITEM]: false,
+  },
+  errors: {
+    [ETodoErrors.GET_ALL]: false,
+    [ETodoErrors.ADD_ITEM]: false,
+    [ETodoErrors.UPDATE_ITEM]: false,
+    [ETodoErrors.DELETE_ITEM]: false,
+  },
   listData: [],
 };
 

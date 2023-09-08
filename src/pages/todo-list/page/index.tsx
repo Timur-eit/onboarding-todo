@@ -9,7 +9,8 @@ import {
   getLoadings,
   getErrors,
   TTodoListState,
-  ETodoLoadErrorState,
+  ETodoLoadings,
+  ETodoErrors,
 } from '../_redux/todo-list';
 import styles from './index.module.scss';
 import { List } from './_components/list';
@@ -23,8 +24,8 @@ type TProps = {
 };
 
 const PageWrapper = memo(({ loadings, errors }: TProps) => {
-  const isLoading = loadings[ETodoLoadErrorState.GET_ALL];
-  const isError = errors[ETodoLoadErrorState.GET_ALL];
+  const isLoading = loadings[ETodoLoadings.GET_ALL];
+  const isError = errors[ETodoErrors.GET_ALL];
 
   if (isLoading || isError) {
     return <AltContent error={isError} loading={isLoading} />;
