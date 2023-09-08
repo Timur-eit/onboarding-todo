@@ -1,7 +1,7 @@
 {
   "todo": { 
     "list": {
-      "listTitle": "Task list todo",
+      "listTitle": "Todo task list",
       "addButton": "Add new task"
     } 
   }

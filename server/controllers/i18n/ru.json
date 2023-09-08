@@ -1,7 +1,7 @@
 {
   "todo": { 
     "list": {
-      "listTitle": "Список задача todo",
+      "listTitle": "Todo список задач",
       "addButton": "Добавить задачу"
     } 
   }
