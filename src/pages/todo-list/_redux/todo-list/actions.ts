@@ -1,37 +1,37 @@
 import { BaseAction, IReduxAction } from '@mihanizm56/redux-core-modules';
-import { TNormalizedItemData } from './types';
+import { TNormalizedItemData, TTodoListState } from './types';
 
-export const SET_IS_LOADING_LIST = 'SET_IS_LOADING_LIST';
-export const setIsLoadingListAction: IReduxAction<
-  boolean,
-  typeof SET_IS_LOADING_LIST
+export const SET_LOADINGS = 'SET_LOADINGS';
+export const setLoadingsAction: IReduxAction<
+  TTodoListState['loadings'],
+  typeof SET_LOADINGS
 > = (payload) => ({
-  type: SET_IS_LOADING_LIST,
+  type: SET_LOADINGS,
   payload,
 });
-setIsLoadingListAction.type = SET_IS_LOADING_LIST;
+setLoadingsAction.type = SET_LOADINGS;
 
-export const SET_IS_ERROR_LIST = 'SET_IS_ERROR_LIST';
-export const setIsErrorListAction: IReduxAction<
-  boolean,
-  typeof SET_IS_ERROR_LIST
+export const SET_ERRORS = 'SET_ERRORS';
+export const setErrorsAction: IReduxAction<
+  TTodoListState['errors'],
+  typeof SET_ERRORS
 > = (payload) => ({
-  type: SET_IS_ERROR_LIST,
+  type: SET_ERRORS,
   payload,
 });
-setIsErrorListAction.type = SET_IS_ERROR_LIST;
+setErrorsAction.type = SET_ERRORS;
 
-export const GET_TODO_LIST_DATA = 'GET_TODO_LIST_DATA';
-export const getTodoListDataAction: BaseAction = () => ({
-  type: GET_TODO_LIST_DATA,
+export const GET_LIST = 'GET_LIST';
+export const getListAction: BaseAction = () => ({
+  type: GET_LIST,
 });
 
-export const SET_TODO_LIST_DATA = 'SET_TODO_LIST_DATA';
-export const setTodoListDataAction: IReduxAction<
+export const SET_LIST = 'SET_LIST';
+export const setListAction: IReduxAction<
   TNormalizedItemData[],
-  typeof SET_TODO_LIST_DATA
+  typeof SET_LIST
 > = (payload) => ({
-  type: SET_TODO_LIST_DATA,
+  type: SET_LIST,
   payload,
 });
-setTodoListDataAction.type = SET_TODO_LIST_DATA;
+setListAction.type = SET_LIST;

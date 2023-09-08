@@ -1,16 +1,13 @@
 import { all, call, put } from 'redux-saga/effects';
 import { getTodoList } from '@/api/requests/get-todo-list-all';
-import {
-  setIsErrorListAction,
-  setIsLoadingListAction,
-  setTodoListDataAction,
-} from '../actions';
+import { setErrorsAction, setLoadingsAction, setListAction } from '../actions';
+import { ETodoLoadErrorState } from '../types';
 
 export function* getTodoListDataWorkerSaga() {
   try {
     yield all([
-      put(setIsErrorListAction(false)),
-      put(setIsLoadingListAction(true)),
+      put(setErrorsAction({ [ETodoLoadErrorState.GET_ALL]: false })),
+      put(setLoadingsAction({ [ETodoLoadErrorState.GET_ALL]: true })),
     ]);
 
     const { data, error, errorText } = yield call(getTodoList);
@@ -19,10 +16,10 @@ export function* getTodoListDataWorkerSaga() {
       throw new Error(errorText ?? data.error);
     }
 
-    yield put(setTodoListDataAction(data));
+    yield put(setListAction(data));
   } catch (error) {
-    yield put(setIsErrorListAction(true));
+    yield put(setErrorsAction({ [ETodoLoadErrorState.GET_ALL]: true }));
   } finally {
-    yield put(setIsLoadingListAction(false));
+    yield put(setLoadingsAction({ [ETodoLoadErrorState.GET_ALL]: false }));
   }
 }

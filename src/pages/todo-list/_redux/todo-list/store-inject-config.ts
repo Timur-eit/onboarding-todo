@@ -8,7 +8,7 @@ import {
   TODO_LIST_REDUCER_NAME,
 } from './constants';
 import reducerTodoList from './reducer';
-import { getTodoListDataAction } from './actions';
+import { getListAction } from './actions';
 
 type TParams = {
   store: IAdvancedStore;
@@ -16,7 +16,7 @@ type TParams = {
 
 export const storeInjectConfig = ({ store }: TParams): StoreInjectConfig => ({
   additionalConfig: {
-    callbackOnMount: () => store.dispatch(getTodoListDataAction()),
+    callbackOnMount: () => store.dispatch(getListAction()),
   },
   reducersToInject: [
     {

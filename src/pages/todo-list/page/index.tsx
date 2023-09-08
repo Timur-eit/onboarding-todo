@@ -10,6 +10,8 @@ import {
   getLoadings,
   getListData,
   getErrors,
+  TTodoListState,
+  ETodoLoadErrorState,
 } from '../_redux/todo-list';
 import styles from './index.module.scss';
 import { List } from './_components/list';
@@ -19,34 +21,34 @@ const cn = classnames.bind(styles);
 
 type TProps = {
   listData: TListItem[];
-  isLoading: boolean;
-  isError: boolean;
+  loadings: TTodoListState['loadings'];
+  errors: TTodoListState['errors'];
 };
 
-const PageWrapper = memo(({ listData, isLoading, isError }: TProps) => {
+const PageWrapper = memo(({ listData, loadings, errors }: TProps) => {
+  const isLoading = loadings[ETodoLoadErrorState.GET_ALL];
+  const isError = errors[ETodoLoadErrorState.GET_ALL];
+
   if (isLoading || isError) {
     return <AltContent error={isError} loading={isLoading} />;
   }
 
   return (
-    !isLoading &&
-    !isError && (
-      <div className={cn(BLOCK_NAME)} data-page="home-page">
-        <MainLayout>
-          <Card>
-            <Text color="black" size="h1" text="Todo list" />
-            <List listData={listData} />
-          </Card>
-        </MainLayout>
-      </div>
-    )
+    <div className={cn(BLOCK_NAME)} data-page="home-page">
+      <MainLayout>
+        <Card>
+          <Text color="black" size="h1" text="Todo list" />
+          <List listData={listData} />
+        </Card>
+      </MainLayout>
+    </div>
   );
 });
 
 const mapStateToProps = (state) => ({
   listData: getListData(state),
-  isLoading: getLoadings(state).isListLoading,
-  isError: getErrors(state).isListError,
+  loadings: getLoadings(state),
+  errors: getErrors(state),
 });
 
 export const Page = connect(mapStateToProps)(PageWrapper);

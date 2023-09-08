@@ -1,51 +1,54 @@
 import {
-  SET_IS_ERROR_LIST,
-  SET_IS_LOADING_LIST,
-  SET_TODO_LIST_DATA,
-  setIsErrorListAction,
-  setIsLoadingListAction,
-  setTodoListDataAction,
+  SET_ERRORS,
+  SET_LOADINGS,
+  setErrorsAction,
+  setLoadingsAction,
+  setListAction,
+  SET_LIST,
 } from './actions';
-import { TTodoListState } from './types';
+import { ETodoLoadErrorState, TTodoListState } from './types';
+
+const initialLoadingErrorState = {
+  [ETodoLoadErrorState.GET_ALL]: false,
+  [ETodoLoadErrorState.ADD_ITEM]: false,
+  [ETodoLoadErrorState.UPDATE_ITEM]: false,
+  [ETodoLoadErrorState.DELETE_ITEM]: false,
+};
 
 export const initialState: TTodoListState = {
-  loadings: {
-    isListLoading: false,
-  },
-  errors: {
-    isListError: false,
-  },
+  loadings: { ...initialLoadingErrorState },
+  errors: { ...initialLoadingErrorState },
   listData: [],
 };
 
-type ActionsType = ReturnType<
-  | typeof setIsLoadingListAction
-  | typeof setIsErrorListAction
-  | typeof setTodoListDataAction
+export type TActions = ReturnType<
+  typeof setErrorsAction | typeof setListAction | typeof setLoadingsAction
 >;
 
 const reducer = (
   state: TTodoListState = initialState,
-  { type, payload }: ActionsType,
+  { type, payload }: TActions,
 ): TTodoListState => {
   switch (type) {
-    case SET_IS_LOADING_LIST:
+    case SET_LOADINGS: {
       return {
         ...state,
         loadings: {
           ...state.loadings,
-          isListLoading: payload,
+          ...payload,
         },
       };
-    case SET_IS_ERROR_LIST:
+    }
+    case SET_ERRORS: {
       return {
         ...state,
         errors: {
           ...state.errors,
-          isListError: payload,
+          ...payload,
         },
       };
-    case SET_TODO_LIST_DATA:
+    }
+    case SET_LIST:
       return {
         ...state,
         listData: payload,
