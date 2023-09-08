@@ -1,10 +1,10 @@
 import { IResponse, RestRequest } from '@mihanizm56/fetch-api';
 import {
-  TodoItemDeleteBodyType,
+  TTodoItemDeleteBodyType,
   makeRequestConfig,
 } from './make-request-config';
 
 export const deleteTodoItem = (
-  body: TodoItemDeleteBodyType,
+  body: TTodoItemDeleteBodyType,
 ): Promise<IResponse> =>
   new RestRequest().deleteRequest(makeRequestConfig(body));
