@@ -1,13 +1,37 @@
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { Ti18NextTodoModel } from './i-18-next-model';
 
-export const todoLocalizationMap: Ti18NextTodoModel = {
-  list: {
-    listTitle: `${APP_NAMESPACE}:todo.list.listTitle`,
-    addButton: `${APP_NAMESPACE}:todo.list.addButton`,
-  },
+const getLocalizationMap = (
+  nameSpace = APP_NAMESPACE,
+  subNamespace = 'todo',
+): Ti18NextTodoModel => {
+  const getTitles = (groupeName: string): Ti18NextTodoModel['titles'] => ({
+    list: `${nameSpace}:${subNamespace}.${groupeName}.list`,
+    create: `${nameSpace}:${subNamespace}.${groupeName}.create`,
+    edit: `${nameSpace}:${subNamespace}.${groupeName}.edit`,
+    delete: `${nameSpace}:${subNamespace}.${groupeName}.delete`,
+  });
+  const getFieldLabels = (
+    groupeName: string,
+  ): Ti18NextTodoModel['fieldLabels'] => ({
+    createDate: `${nameSpace}:${subNamespace}.${groupeName}.createDate`,
+    description: `${nameSpace}:${subNamespace}.${groupeName}.description`,
+  });
+  const getButtonLabels = (
+    groupeName: string,
+  ): Ti18NextTodoModel['buttonLabels'] => ({
+    create: `${nameSpace}:${subNamespace}.${groupeName}.create`,
+    edit: `${nameSpace}:${subNamespace}.${groupeName}.edit`,
+    save: `${nameSpace}:${subNamespace}.${groupeName}.save`,
+    cancel: `${nameSpace}:${subNamespace}.${groupeName}.cancel`,
+    submit: `${nameSpace}:${subNamespace}.${groupeName}.submit`,
+  });
+
+  return {
+    titles: getTitles('titles'),
+    fieldLabels: getFieldLabels('fieldLabels'),
+    buttonLabels: getButtonLabels('buttonLabels'),
+  };
 };
 
-// title: i18next.t(TODO_PAGE_TRANSLATES.deleteButton),
-
-// text={i18next.t(`${APP_NAMESPACE}:todo.list.listTitle`)}
+export const todoLocalizationMap = getLocalizationMap();

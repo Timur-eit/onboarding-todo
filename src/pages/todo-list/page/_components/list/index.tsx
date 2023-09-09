@@ -6,11 +6,13 @@ import {
 } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
 import { connect } from 'react-redux';
+import i18next from 'i18next';
 import { TListItem } from '@/pages/todo-list/_redux/todo-list/types';
 import { getListData } from '@/pages/todo-list/_redux/todo-list';
-import styles from './index.module.scss';
+import { todoLocalizationMap as i18nMap } from '../../_localization/localization-map';
 import { ListItemContent } from './_components/list-item-content';
 import { convertForAccordion } from './_utils/convert-data-for-accordion';
+import styles from './index.module.scss';
 
 const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
@@ -38,7 +40,11 @@ export const ListWrapper = memo(({ listData }: TProps) => {
     <div className={cn(BLOCK_NAME)}>
       <div className={cn(`${BLOCK_NAME}__control-panel`)}>
         {/* // TODO add функционал добавления нового записи */}
-        <ButtonLink size="small" text="Добавить" variant="add" />
+        <ButtonLink
+          size="small"
+          text={i18next.t(i18nMap.buttonLabels.create)}
+          variant="add"
+        />
       </div>
       <Accordion
         hasRadioButton

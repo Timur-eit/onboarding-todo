@@ -1,8 +1,21 @@
 {
-  "todo": { 
-    "list": {
-      "listTitle": "Todo task list",
-      "addButton": "Add new task"
-    } 
+  "todo": {
+    "titles": {
+      "list": "Todo list",
+      "create": "Task creation",
+      "edit": "Editing",
+      "delete": "Task deletion"
+    },
+    "fieldLabels": {
+      "createDate": "Creation date:",
+      "description": "Description:"
+    },
+    "buttonLabels": {
+      "create": "Create task",
+      "edit": "Edit",
+      "save": "Save",
+      "cancel": "Cancel",
+      "submit": "Submit"
+    }
   }
 }

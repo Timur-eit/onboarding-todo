@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import classnames from 'classnames/bind';
 import { Text } from '@wildberries/ui-kit';
 import { connect } from 'react-redux';
+import i18next from 'i18next';
 import { MainLayout } from '@/_components/main-layout';
 import { Card } from '@/_components/card-layout';
 import { AltContent } from '@/_components/alt-content';
@@ -14,6 +15,7 @@ import {
 } from '../_redux/todo-list';
 import styles from './index.module.scss';
 import { List } from './_components/list';
+import { todoLocalizationMap as i18nKeyMap } from './_localization/localization-map';
 
 const BLOCK_NAME = 'Home-page';
 const cn = classnames.bind(styles);
@@ -31,11 +33,15 @@ const PageWrapper = memo(({ loadings, errors }: TProps) => {
     return <AltContent error={isError} loading={isLoading} />;
   }
 
+  const listTitle = (
+    <Text color="black" size="h2" text={i18next.t(i18nKeyMap.titles.list)} />
+  );
+
   return (
     <div className={cn(BLOCK_NAME)} data-page="home-page">
       <MainLayout>
         <Card>
-          <Text color="black" size="h1" text="Todo list" />
+          {listTitle}
           <List />
         </Card>
       </MainLayout>
