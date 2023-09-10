@@ -4,6 +4,7 @@ import classnames from 'classnames/bind';
 import i18next from 'i18next';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
 import { ItemField } from '../_view-components/item-field';
+import { getLocalTime } from '../../_utils/get-local-time';
 import styles from './index.module.scss';
 
 const COMPONENT_STYLE_NAME = 'ListItem';
@@ -14,7 +15,7 @@ export const ListItemContent = memo(
     <div className={cn(COMPONENT_STYLE_NAME)}>
       <ItemField
         label={i18next.t(i18nKeyMap.fieldLabels.createDate)}
-        text={createDate}
+        text={getLocalTime(createDate)}
         textColor="orange"
       />
       <ItemField
