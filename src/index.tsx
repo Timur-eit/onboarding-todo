@@ -7,7 +7,11 @@ import 'fast-text-encoding/text';
 import 'reset-css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { geti18Next, getLocale } from '@wildberries/i18next-utils';
+import {
+  geti18Next,
+  getLocale,
+  getI18nextRequestEndpoint,
+} from '@wildberries/i18next-utils';
 import i18next from 'i18next';
 import { createAppStore } from '@mihanizm56/redux-core-modules';
 import { configureRouter } from '@wildberries/service-router';
@@ -35,7 +39,7 @@ import { i18nextRequest } from './api/requests/i18next';
 import 'normalize.css';
 import '@/styles/global.css';
 import '@/styles/variables.module.scss';
-import { getI18nextRequestEndpoint } from './api/endpoints/i18next';
+// import { getI18nextRequestEndpoint } from './api/endpoints/i18next';
 
 const ROOT_ELEMENT = document.getElementById('root');
 
