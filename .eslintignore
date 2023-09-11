@@ -7,5 +7,5 @@ integration-tests/
 
 gulpfile.js
 
-src/_assets/i18next/weblate-translates/en.json
-src/_assets/i18next/weblate-translates/ru.json
+src/_assets/i18next/en.json
+src/_assets/i18next/ru.json
