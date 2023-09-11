@@ -10,7 +10,7 @@ const { rootRouter } = require('./router/root');
 // prepare config
 dotenv.config();
 const app = express();
-const PORT = process.env.SERVER_PORT || 8081;
+const PORT = 8081;
 
 // middlewares
 app.use(cors({ origin: '*' }));
