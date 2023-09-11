@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-// const translate = require('./data.json');
 const languageEN = require('./en.json');
 const languageRU = require('./ru.json');
 
