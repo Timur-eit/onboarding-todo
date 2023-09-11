@@ -24,3 +24,10 @@ export type TTodoListState = {
   errors: { [key in ETodoErrors]?: boolean };
   listData: TListItem[];
 };
+
+export type TCreateItemPayload = Pick<TListItem, 'title' | 'description'>;
+
+export type TCreateItemActionSaga = {
+  type: string;
+  payload: TCreateItemPayload;
+};

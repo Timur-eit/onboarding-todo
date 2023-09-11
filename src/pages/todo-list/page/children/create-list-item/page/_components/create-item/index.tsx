@@ -1,18 +1,28 @@
 import { memo, useCallback } from 'react';
 import { Text } from '@wildberries/ui-kit';
 import i18next from 'i18next';
+import { connect } from 'react-redux';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
 import { ItemFormView } from '@/pages/todo-list/page/_components/list/_components/_view-components/item-form';
 import { TItemFormValues } from '@/pages/todo-list/page/_components/list/_components/_view-components/item-form/types';
 import { useTodoRoute } from '@/pages/todo-list/page/_components/list/_utils/hooks/use-todo-router';
+import { createItemAction } from '@/pages/todo-list/_redux/todo-list';
 
-export const CreateItem = memo(() => {
+type TDispatchMap = {
+  createNewItem: typeof createItemAction;
+};
+
+type TProps = TDispatchMap;
+
+export const CreateItemWrapper = memo(({ createNewItem }: TProps) => {
   const { goToListPage } = useTodoRoute();
 
-  const submitCreate = useCallback((values: TItemFormValues) => {
-    // eslint-disable-next-line no-console
-    console.log(values); // временная заглушка
-  }, []);
+  const submitCreate = useCallback(
+    (values: TItemFormValues) => {
+      createNewItem(values);
+    },
+    [createNewItem],
+  );
 
   return (
     <>
@@ -29,3 +39,9 @@ export const CreateItem = memo(() => {
     </>
   );
 });
+
+const mapDispatchToProps = {
+  createNewItem: createItemAction,
+};
+
+export const CreateItem = connect(null, mapDispatchToProps)(CreateItemWrapper);
