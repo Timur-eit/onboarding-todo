@@ -1,6 +1,10 @@
 import { memo, useCallback, useEffect } from 'react';
 import { Form, Field } from 'react-final-form';
-import { ButtonLink, FormSimpleInput } from '@wildberries/ui-kit';
+import {
+  ButtonLink,
+  FormSimpleInput,
+  FormTextAreaInput,
+} from '@wildberries/ui-kit';
 import i18next from 'i18next';
 import classnames from 'classnames/bind';
 import { TListItem } from '@/pages/todo-list/_redux/todo-list';
@@ -77,7 +81,7 @@ export const ItemFormView = memo(
               <div>
                 <Field name={ItemFormFieldNames.DESC}>
                   {({ input, meta }) => (
-                    <FormSimpleInput
+                    <FormTextAreaInput
                       externalErrorMessage={
                         meta.touched && meta.error && meta.error
                       }
@@ -90,6 +94,7 @@ export const ItemFormView = memo(
                         i18nKeyMap.fieldLabels.description,
                       )}
                       required
+                      rows={5}
                     />
                   )}
                 </Field>
