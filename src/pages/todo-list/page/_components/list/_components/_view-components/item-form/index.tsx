@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { Form, Field } from 'react-final-form';
 import { ButtonLink, FormSimpleInput } from '@wildberries/ui-kit';
 import i18next from 'i18next';
@@ -34,6 +34,19 @@ export const ItemFormView = memo(
         [ItemFormFieldNames.DESC]: null,
       };
     }, [isEdit, itemData?.description, itemData?.title]);
+
+    useEffect(() => {
+      const escapeHandler = (event: KeyboardEvent): void => {
+        if (event.key === 'Escape' || event.key === 'Esc') {
+          cancelHandler();
+        }
+      };
+      window.addEventListener('keydown', escapeHandler);
+
+      return () => {
+        window.removeEventListener('keypress', escapeHandler);
+      };
+    }, [cancelHandler]);
 
     return (
       <div className={cn(BLOCK_NAME)}>
@@ -98,7 +111,6 @@ export const ItemFormView = memo(
             </form>
           )}
           validate={todoFormValidation}
-          validateOnBlur
         />
       </div>
     );

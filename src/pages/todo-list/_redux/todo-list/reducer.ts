@@ -5,6 +5,8 @@ import {
   setLoadingsAction,
   setListAction,
   SET_LIST,
+  SET_COMPLETE_STATUS,
+  setCompleteAction,
 } from './actions';
 import { ETodoErrors, ETodoLoadings, TTodoListState } from './types';
 
@@ -21,11 +23,19 @@ export const initialState: TTodoListState = {
     [ETodoErrors.UPDATE_ITEM]: false,
     [ETodoErrors.DELETE_ITEM]: false,
   },
+  completeStatuses: {
+    isCreated: false,
+    isEdited: false,
+    isDeleted: false,
+  },
   listData: [],
 };
 
 export type TActions = ReturnType<
-  typeof setErrorsAction | typeof setListAction | typeof setLoadingsAction
+  | typeof setErrorsAction
+  | typeof setListAction
+  | typeof setLoadingsAction
+  | typeof setCompleteAction
 >;
 
 const reducer = (
@@ -51,11 +61,22 @@ const reducer = (
         },
       };
     }
-    case SET_LIST:
+    case SET_LIST: {
       return {
         ...state,
         listData: payload,
       };
+    }
+    case SET_COMPLETE_STATUS: {
+      return {
+        ...state,
+        completeStatuses: {
+          ...state.completeStatuses,
+          ...payload,
+        },
+      };
+    }
+
     default:
       return state;
   }

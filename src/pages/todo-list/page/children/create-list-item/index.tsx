@@ -1,13 +1,7 @@
 import React from 'react';
 import { RouteNode } from '@wildberries/service-router';
-import {
-  ReduxStoreLoader,
-  injectAsyncReducer,
-} from '@mihanizm56/redux-core-modules';
+import { ReduxStoreLoader } from '@mihanizm56/redux-core-modules';
 import { AppLayout } from '@/_layouts/app-layout';
-import reducerUI, {
-  MODULE_REDUCER_NAME as reducerUIName,
-} from '@/_redux/ui-module';
 import {
   CREATE_ITEM_WATCHER_SAGA_NAME,
   TODO_LIST_REDUCER_NAME,
@@ -19,50 +13,42 @@ import { CREATE_ITEM_PAGE_PAGE_NODE } from './_constants';
 
 const pageNode = CREATE_ITEM_PAGE_PAGE_NODE;
 
-const action = async ({ store, toState, fromState }) => {
-  injectAsyncReducer({
-    store,
-    name: reducerUIName,
-    reducer: reducerUI,
-  });
+const action = async ({ fromState, toState }) => ({
+  title: 'CreateNewItem',
+  content: (
+    <AppLayout>
+      <RouteNode nodeName={pageNode}>
+        {({ route, content }) => {
+          if (route.name === pageNode) {
+            return (
+              <ReduxStoreLoader
+                fromState={fromState}
+                storeInjectConfig={{
+                  reducersToInject: [
+                    {
+                      name: TODO_LIST_REDUCER_NAME,
+                      reducer: reducerTodoList,
+                    },
+                  ],
+                  sagasToInject: [
+                    {
+                      name: CREATE_ITEM_WATCHER_SAGA_NAME,
+                      saga: createItemWatcherSaga,
+                    },
+                  ],
+                }}
+                toState={toState}
+              >
+                <Page />
+              </ReduxStoreLoader>
+            );
+          }
 
-  return {
-    title: 'CreateNewItem',
-    content: (
-      <AppLayout>
-        <RouteNode nodeName={pageNode}>
-          {({ route, content }) => {
-            if (route.name === pageNode) {
-              return (
-                <ReduxStoreLoader
-                  fromState={fromState}
-                  storeInjectConfig={{
-                    reducersToInject: [
-                      {
-                        name: TODO_LIST_REDUCER_NAME,
-                        reducer: reducerTodoList,
-                      },
-                    ],
-                    sagasToInject: [
-                      {
-                        name: CREATE_ITEM_WATCHER_SAGA_NAME,
-                        saga: createItemWatcherSaga,
-                      },
-                    ],
-                  }}
-                  toState={toState}
-                >
-                  <Page />
-                </ReduxStoreLoader>
-              );
-            }
-
-            return content;
-          }}
-        </RouteNode>
-      </AppLayout>
-    ),
-  };
-};
+          return content;
+        }}
+      </RouteNode>
+    </AppLayout>
+  ),
+});
 
 export default action;

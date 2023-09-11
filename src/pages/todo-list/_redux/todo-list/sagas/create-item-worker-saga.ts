@@ -1,6 +1,10 @@
 import { all, call, put } from 'redux-saga/effects';
 import { createTodoItem } from '@/api/requests/create-todo-etem';
-import { setErrorsAction, setLoadingsAction } from '../actions';
+import {
+  setCompleteAction,
+  setErrorsAction,
+  setLoadingsAction,
+} from '../actions';
 import { ETodoErrors, ETodoLoadings, TCreateItemActionSaga } from '../types';
 
 export function* createItemWorkerSaga({ payload }: TCreateItemActionSaga) {
@@ -15,9 +19,13 @@ export function* createItemWorkerSaga({ payload }: TCreateItemActionSaga) {
     if (error || data.error) {
       throw new Error(errorText ?? data.error);
     }
+    yield put(setCompleteAction({ isCreated: true }));
   } catch (error) {
     yield put(setErrorsAction({ [ETodoErrors.ADD_ITEM]: true }));
   } finally {
-    yield put(setLoadingsAction({ [ETodoLoadings.ADD_ITEM]: false }));
+    yield all([
+      put(setLoadingsAction({ [ETodoLoadings.ADD_ITEM]: false })),
+      put(setCompleteAction({ isCreated: false })),
+    ]);
   }
 }
