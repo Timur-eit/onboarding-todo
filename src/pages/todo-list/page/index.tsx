@@ -33,15 +33,15 @@ const PageWrapper = memo(({ loadings, errors }: TProps) => {
     return <AltContent error={isError} loading={isLoading} />;
   }
 
-  const listTitle = (
-    <Text color="black" size="h2" text={i18next.t(i18nKeyMap.titles.list)} />
-  );
-
   return (
     <div className={cn(BLOCK_NAME)} data-page="home-page">
       <MainLayout>
         <Card>
-          {listTitle}
+          <Text
+            color="black"
+            size="h2"
+            text={i18next.t(i18nKeyMap.titles.list)}
+          />
           <List />
         </Card>
       </MainLayout>
