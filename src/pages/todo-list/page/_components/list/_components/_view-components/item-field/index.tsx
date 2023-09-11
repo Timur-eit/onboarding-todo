@@ -12,7 +12,7 @@ type TProps = {
   textClassName?: string;
 };
 
-export const ItemField = memo(
+export const ItemFieldView = memo(
   ({ label, text, textColor, fieldClassName, textClassName }: TProps) => (
     <div className={fieldClassName}>
       <Label htmlFor="id3" isNotHover>
