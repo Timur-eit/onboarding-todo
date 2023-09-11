@@ -11,6 +11,7 @@ export const todoLocalizationMap: Ti18NextTodoModel = {
     delete: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.TITLES}.delete`,
   },
   [ETranslateTodoGroups.FIELDS_LABELS]: {
+    title: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.FIELDS_LABELS}.title`,
     createDate: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.FIELDS_LABELS}.createDate`,
     description: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.FIELDS_LABELS}.description`,
   },
@@ -20,5 +21,9 @@ export const todoLocalizationMap: Ti18NextTodoModel = {
     save: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.BUTTON_LABELS}.save`,
     cancel: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.BUTTON_LABELS}.cancel`,
     submit: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.BUTTON_LABELS}.submit`,
+  },
+  [ETranslateTodoGroups.VALIDATION_ERRORS]: {
+    title: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.VALIDATION_ERRORS}.title`,
+    description: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.VALIDATION_ERRORS}.description`,
   },
 };

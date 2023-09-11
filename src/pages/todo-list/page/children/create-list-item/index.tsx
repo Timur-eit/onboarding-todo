@@ -5,11 +5,10 @@ import { AppLayout } from '@/_layouts/app-layout';
 import reducerUI, {
   MODULE_REDUCER_NAME as reducerUIName,
 } from '@/_redux/ui-module';
-import { TODO_LIST_PAGE_NAME } from '../../_constants';
 import { Page } from './page';
-import { CREATE_LIST_ITEM_PAGE_NAME } from './_constants';
+import { CREATE_ITEM_PAGE_PAGE_NODE } from './_constants';
 
-const pageNode = `${TODO_LIST_PAGE_NAME}.${CREATE_LIST_ITEM_PAGE_NAME}`;
+const pageNode = CREATE_ITEM_PAGE_PAGE_NODE;
 
 const action = async ({ store }) => {
   injectAsyncReducer({

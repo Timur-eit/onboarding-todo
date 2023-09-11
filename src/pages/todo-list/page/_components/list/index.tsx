@@ -13,6 +13,7 @@ import { todoLocalizationMap as i18nMap } from '../../_localization/localization
 import { ListItemContent } from './_components/list-item-content';
 import { convertForAccordion } from './_utils/convert-data-for-accordion';
 import styles from './index.module.scss';
+import { useTodoRoute } from './_utils/hooks/use-todo-router';
 
 const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
@@ -22,6 +23,7 @@ type TProps = {
 };
 
 export const ListWrapper = memo(({ listData }: TProps) => {
+  const { goToCreatePage } = useTodoRoute();
   const [selected, setSelected] = useState('');
 
   const itemSelectHandler = useCallback(
@@ -39,8 +41,8 @@ export const ListWrapper = memo(({ listData }: TProps) => {
   return (
     <div className={cn(BLOCK_NAME)}>
       <div className={cn(`${BLOCK_NAME}__control-panel`)}>
-        {/* // TODO add функционал добавления нового записи */}
         <ButtonLink
+          onClick={goToCreatePage}
           size="small"
           text={i18next.t(i18nMap.buttonLabels.create)}
           variant="add"
