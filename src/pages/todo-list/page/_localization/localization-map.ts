@@ -1,37 +1,24 @@
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
-import { Ti18NextTodoModel } from './i-18-next-model';
+import { ETranslateTodoGroups, Ti18NextTodoModel } from './i-18-next-model';
 
-const getLocalizationMap = (
-  nameSpace = APP_NAMESPACE,
-  subNamespace = 'todo',
-): Ti18NextTodoModel => {
-  const getTitles = (groupeName: string): Ti18NextTodoModel['titles'] => ({
-    list: `${nameSpace}:${subNamespace}.${groupeName}.list`,
-    create: `${nameSpace}:${subNamespace}.${groupeName}.create`,
-    edit: `${nameSpace}:${subNamespace}.${groupeName}.edit`,
-    delete: `${nameSpace}:${subNamespace}.${groupeName}.delete`,
-  });
-  const getFieldLabels = (
-    groupeName: string,
-  ): Ti18NextTodoModel['fieldLabels'] => ({
-    createDate: `${nameSpace}:${subNamespace}.${groupeName}.createDate`,
-    description: `${nameSpace}:${subNamespace}.${groupeName}.description`,
-  });
-  const getButtonLabels = (
-    groupeName: string,
-  ): Ti18NextTodoModel['buttonLabels'] => ({
-    create: `${nameSpace}:${subNamespace}.${groupeName}.create`,
-    edit: `${nameSpace}:${subNamespace}.${groupeName}.edit`,
-    save: `${nameSpace}:${subNamespace}.${groupeName}.save`,
-    cancel: `${nameSpace}:${subNamespace}.${groupeName}.cancel`,
-    submit: `${nameSpace}:${subNamespace}.${groupeName}.submit`,
-  });
+const SUB_NAMESPACE = 'todo';
 
-  return {
-    titles: getTitles('titles'),
-    fieldLabels: getFieldLabels('fieldLabels'),
-    buttonLabels: getButtonLabels('buttonLabels'),
-  };
+export const todoLocalizationMap: Ti18NextTodoModel = {
+  [ETranslateTodoGroups.TITLES]: {
+    list: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.TITLES}.list`,
+    create: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.TITLES}.create`,
+    edit: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.TITLES}.edit`,
+    delete: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.TITLES}.delete`,
+  },
+  [ETranslateTodoGroups.FIELDS_LABELS]: {
+    createDate: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.FIELDS_LABELS}.createDate`,
+    description: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.FIELDS_LABELS}.description`,
+  },
+  [ETranslateTodoGroups.BUTTON_LABELS]: {
+    create: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.BUTTON_LABELS}.create`,
+    edit: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.BUTTON_LABELS}.edit`,
+    save: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.BUTTON_LABELS}.save`,
+    cancel: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.BUTTON_LABELS}.cancel`,
+    submit: `${APP_NAMESPACE}:${SUB_NAMESPACE}.${ETranslateTodoGroups.BUTTON_LABELS}.submit`,
+  },
 };
-
-export const todoLocalizationMap = getLocalizationMap();

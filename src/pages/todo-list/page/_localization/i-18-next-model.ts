@@ -1,15 +1,21 @@
+export enum ETranslateTodoGroups {
+  TITLES = 'titles',
+  FIELDS_LABELS = 'fieldLabels',
+  BUTTON_LABELS = 'buttonLabels',
+}
+
 export type Ti18NextTodoModel = {
-  titles: {
+  [ETranslateTodoGroups.TITLES]: {
     list: string;
     create: string;
     edit: string;
     delete: string;
   };
-  fieldLabels: {
+  [ETranslateTodoGroups.FIELDS_LABELS]: {
     createDate: string;
     description: string;
   };
-  buttonLabels: {
+  [ETranslateTodoGroups.BUTTON_LABELS]: {
     create: string;
     edit: string;
     save: string;
