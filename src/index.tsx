@@ -39,7 +39,6 @@ import { i18nextRequest } from './api/requests/i18next';
 import 'normalize.css';
 import '@/styles/global.css';
 import '@/styles/variables.module.scss';
-// import { getI18nextRequestEndpoint } from './api/endpoints/i18next';
 
 const ROOT_ELEMENT = document.getElementById('root');
 
