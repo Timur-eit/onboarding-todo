@@ -23,16 +23,27 @@ export type TTodoListState = {
   loadings: { [key in ETodoLoadings]?: boolean };
   errors: { [key in ETodoErrors]?: boolean };
   listData: TListItem[];
+  itemToEdit: null | TListItem;
   completeStatuses: {
     isCreated?: boolean;
     isEdited?: boolean;
     isDeleted?: boolean;
   };
+  isEditModalOpen: boolean;
+  editItemId: string | null;
 };
 
 export type TCreateItemPayload = Pick<TListItem, 'title' | 'description'>;
+export type TUpdateItemPayload = Pick<
+  TListItem,
+  'id' | 'title' | 'description'
+>;
 
 export type TCreateItemActionSaga = {
   type: string;
   payload: TCreateItemPayload;
+};
+export type TUpdateItemActionSaga = {
+  type: string;
+  payload: TUpdateItemPayload;
 };

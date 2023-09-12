@@ -7,6 +7,10 @@ import {
   SET_LIST,
   SET_COMPLETE_STATUS,
   setCompleteAction,
+  SET_EDIT_MODAL_OPEN,
+  setEditIModalOpenAction,
+  setEditIItemIdAction,
+  SET_EDIT_ITEM_ID,
 } from './actions';
 import { ETodoErrors, ETodoLoadings, TTodoListState } from './types';
 
@@ -29,6 +33,9 @@ export const initialState: TTodoListState = {
     isDeleted: false,
   },
   listData: [],
+  itemToEdit: null,
+  isEditModalOpen: false,
+  editItemId: null,
 };
 
 export type TActions = ReturnType<
@@ -36,6 +43,8 @@ export type TActions = ReturnType<
   | typeof setListAction
   | typeof setLoadingsAction
   | typeof setCompleteAction
+  | typeof setEditIModalOpenAction
+  | typeof setEditIItemIdAction
 >;
 
 const reducer = (
@@ -74,6 +83,18 @@ const reducer = (
           ...state.completeStatuses,
           ...payload,
         },
+      };
+    }
+    case SET_EDIT_MODAL_OPEN: {
+      return {
+        ...state,
+        isEditModalOpen: payload,
+      };
+    }
+    case SET_EDIT_ITEM_ID: {
+      return {
+        ...state,
+        editItemId: payload,
       };
     }
 

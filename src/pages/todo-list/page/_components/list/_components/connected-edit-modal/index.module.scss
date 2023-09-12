@@ -1,0 +1,9 @@
+.EditModal {
+  height: 450px;
+  width: auto;
+  &__alt-content {
+    div {
+      height: 50vh;
+    }
+  }
+}

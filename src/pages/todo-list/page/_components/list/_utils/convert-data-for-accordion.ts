@@ -9,6 +9,7 @@ export const convertForAccordion = (
     title,
     radioValue: id,
     content: {
+      id,
       createDate,
       description,
     },
