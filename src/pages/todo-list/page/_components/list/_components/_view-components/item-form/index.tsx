@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { Form } from 'react-final-form';
 import { TListItem } from '@/pages/todo-list/_redux/todo-list';
 import { ItemFormFieldNames, TItemFormValues } from './types';
@@ -14,7 +14,7 @@ type TProps = {
 
 export const ItemFormView = memo(
   ({ isEdit, itemData, submitHandler, cancelHandler }: TProps) => {
-    const getFormInitValues = useCallback((): TItemFormValues => {
+    const formInitValues = useMemo((): TItemFormValues => {
       if (isEdit) {
         return {
           [ItemFormFieldNames.TITLE]: itemData?.title,
@@ -43,7 +43,7 @@ export const ItemFormView = memo(
 
     return (
       <Form
-        initialValues={getFormInitValues()}
+        initialValues={formInitValues}
         onSubmit={submitHandler}
         validate={todoFormValidation}
       >
