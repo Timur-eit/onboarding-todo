@@ -2,13 +2,13 @@ import i18next from 'i18next';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
 import { ItemFormFieldNames, TItemFormValues } from './types';
 
-export type TTodoFormErrors = {
+export type TTodoValidationErrorMessages = {
   [key in ItemFormFieldNames]?: {
     required: string;
   };
 };
 
-const todoFormErrors: TTodoFormErrors = {
+const todoFormErrors: TTodoValidationErrorMessages = {
   [ItemFormFieldNames.TITLE]: {
     required: i18next.t(i18nKeyMap.validationErrors.title),
   },
@@ -17,10 +17,12 @@ const todoFormErrors: TTodoFormErrors = {
   },
 };
 
+export type TTodoFormErrors = { [key in ItemFormFieldNames]?: string };
+
 export const todoFormValidation = ({
   title,
   description,
-}: TItemFormValues): { [key in ItemFormFieldNames]?: string } => {
+}: TItemFormValues): TTodoFormErrors => {
   const errors = {};
 
   if (!title) {

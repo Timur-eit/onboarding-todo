@@ -45,11 +45,16 @@ export const ItemFormView = memo(
       <Form
         initialValues={getFormInitValues()}
         onSubmit={submitHandler}
-        render={({ handleSubmit }) => (
-          <FormView cancel={cancelHandler} submit={handleSubmit} />
-        )}
         validate={todoFormValidation}
-      />
+      >
+        {({ handleSubmit, errors, touched }) => (
+          <FormView
+            cancel={cancelHandler}
+            submit={handleSubmit}
+            validation={{ errors, touched }}
+          />
+        )}
+      </Form>
     );
   },
 );
