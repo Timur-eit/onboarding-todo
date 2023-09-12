@@ -34,7 +34,7 @@ const createTodoItemPostController = async (req, res) => {
     res.status(200).json({
       error: false,
       errorText: '',
-      data: { newItem },
+      data: { ...newItem },
       additionalErrors: null,
     });
   }, 1300);

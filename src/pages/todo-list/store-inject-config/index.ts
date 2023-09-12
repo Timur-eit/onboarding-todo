@@ -2,13 +2,13 @@ import {
   IAdvancedStore,
   StoreInjectConfig,
 } from '@mihanizm56/redux-core-modules';
-import { getTodoListDataWatcherSaga } from './sagas/get-todo-list-data-watcher-saga';
+import reducerTodoList from '@/pages/todo-list/_redux/todo-list/reducer';
+import { getTodoListDataWatcherSaga } from '../_redux/todo-list/sagas/get-todo-list-data-watcher-saga';
 import {
   GET_TODO_LIST_DATA_WATCHER_SAGA_NAME,
   TODO_LIST_REDUCER_NAME,
-} from './constants';
-import reducerTodoList from './reducer';
-import { getListAction } from './actions';
+  getListAction,
+} from '../_redux/todo-list';
 
 type TParams = {
   store: IAdvancedStore;

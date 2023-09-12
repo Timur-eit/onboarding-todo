@@ -7,6 +7,7 @@
       "delete": "Task deletion"
     },
     "fieldLabels": {
+      "title": "Name:",
       "createDate": "Creation date:",
       "description": "Description:"
     },
@@ -16,6 +17,10 @@
       "save": "Save",
       "cancel": "Cancel",
       "submit": "Submit"
+    },
+    "validationErrors": {
+      "title": "Enter a name please",
+      "description": "Enter a description please"
     }
   }
 }

@@ -2,6 +2,7 @@ export enum ETranslateTodoGroups {
   TITLES = 'titles',
   FIELDS_LABELS = 'fieldLabels',
   BUTTON_LABELS = 'buttonLabels',
+  VALIDATION_ERRORS = 'validationErrors',
 }
 
 export type Ti18NextTodoModel = {
@@ -12,6 +13,7 @@ export type Ti18NextTodoModel = {
     delete: string;
   };
   [ETranslateTodoGroups.FIELDS_LABELS]: {
+    title: string;
     createDate: string;
     description: string;
   };
@@ -21,5 +23,9 @@ export type Ti18NextTodoModel = {
     save: string;
     cancel: string;
     submit: string;
+  };
+  [ETranslateTodoGroups.VALIDATION_ERRORS]: {
+    title: string;
+    description: string;
   };
 };

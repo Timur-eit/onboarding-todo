@@ -21,3 +21,8 @@ export const getListData = createSelector(
   [todoListStorageSelector],
   ({ listData }: TTodoListState) => listData,
 );
+
+export const getCompleteStatuses = createSelector(
+  [todoListStorageSelector],
+  ({ completeStatuses }: TTodoListState) => completeStatuses,
+);

@@ -1,38 +1,38 @@
 import React from 'react';
 import { RouteNode } from '@wildberries/service-router';
-import { injectAsyncReducer } from '@mihanizm56/redux-core-modules';
+import { ReduxStoreLoader } from '@mihanizm56/redux-core-modules';
+import i18next from 'i18next';
 import { AppLayout } from '@/_layouts/app-layout';
-import reducerUI, {
-  MODULE_REDUCER_NAME as reducerUIName,
-} from '@/_redux/ui-module';
-import { Page } from './page';
-import { CREATE_LIST_ITEM_PAGE_NAME } from './_constants';
+import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
+import { CreatePage } from './page';
+import { CREATE_ITEM_PAGE_PAGE_NODE } from './_constants';
+import { storeInjectConfig } from './store-inject-config';
 
-const pageNode = CREATE_LIST_ITEM_PAGE_NAME;
+const pageNode = CREATE_ITEM_PAGE_PAGE_NODE;
 
-const action = async ({ store }) => {
-  injectAsyncReducer({
-    store,
-    name: reducerUIName,
-    reducer: reducerUI,
-  });
+const action = async ({ fromState, toState }) => ({
+  title: i18next.t(i18nKeyMap.titles.create),
+  content: (
+    <AppLayout>
+      <RouteNode nodeName={pageNode}>
+        {({ route, content }) => {
+          if (route.name === pageNode) {
+            return (
+              <ReduxStoreLoader
+                fromState={fromState}
+                storeInjectConfig={storeInjectConfig()}
+                toState={toState}
+              >
+                <CreatePage />
+              </ReduxStoreLoader>
+            );
+          }
 
-  return {
-    title: 'CreateNewItem',
-    content: (
-      <AppLayout>
-        <RouteNode nodeName={pageNode}>
-          {({ route, content }) => {
-            if (route.name === pageNode) {
-              return <Page />;
-            }
-
-            return content;
-          }}
-        </RouteNode>
-      </AppLayout>
-    ),
-  };
-};
+          return content;
+        }}
+      </RouteNode>
+    </AppLayout>
+  ),
+});
 
 export default action;

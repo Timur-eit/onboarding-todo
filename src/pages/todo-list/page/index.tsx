@@ -14,7 +14,7 @@ import {
   ETodoErrors,
 } from '../_redux/todo-list';
 import styles from './index.module.scss';
-import { List } from './_components/list';
+import { ConnectedList } from './_components/list';
 import { todoLocalizationMap as i18nKeyMap } from './_localization/localization-map';
 
 const BLOCK_NAME = 'Home-page';
@@ -25,7 +25,7 @@ type TProps = {
   errors: TTodoListState['errors'];
 };
 
-const PageWrapper = memo(({ loadings, errors }: TProps) => {
+const ListPageWrapper = memo(({ loadings, errors }: TProps) => {
   const isLoading = loadings[ETodoLoadings.GET_ALL];
   const isError = errors[ETodoErrors.GET_ALL];
 
@@ -42,7 +42,7 @@ const PageWrapper = memo(({ loadings, errors }: TProps) => {
             size="h2"
             text={i18next.t(i18nKeyMap.titles.list)}
           />
-          <List />
+          <ConnectedList />
         </Card>
       </MainLayout>
     </div>
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => ({
   errors: getErrors(state),
 });
 
-export const Page = connect(mapStateToProps)(PageWrapper);
+export const ListPage = connect(mapStateToProps)(ListPageWrapper);

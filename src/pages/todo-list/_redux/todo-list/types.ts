@@ -23,4 +23,16 @@ export type TTodoListState = {
   loadings: { [key in ETodoLoadings]?: boolean };
   errors: { [key in ETodoErrors]?: boolean };
   listData: TListItem[];
+  completeStatuses: {
+    isCreated?: boolean;
+    isEdited?: boolean;
+    isDeleted?: boolean;
+  };
+};
+
+export type TCreateItemPayload = Pick<TListItem, 'title' | 'description'>;
+
+export type TCreateItemActionSaga = {
+  type: string;
+  payload: TCreateItemPayload;
 };

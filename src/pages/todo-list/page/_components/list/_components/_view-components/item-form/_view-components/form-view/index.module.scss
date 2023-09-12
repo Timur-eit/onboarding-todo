@@ -1,0 +1,49 @@
+@import "@wildberries/ui-kit/lib/styles/media.module.scss";
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  justify-content: center;
+
+  &__button-block {
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+  }
+}
+
+@media #{$tablet} {
+  .Form {
+    gap: 12px;
+    &__button-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+}
+
+
+@media #{$mobile} {
+  .Form {
+    gap: 10px;
+    &__button-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+}
+
+@media #{$mobile-small} {
+  .Form {
+    gap: 10px;
+    &__button-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+}

@@ -39,11 +39,12 @@ import { i18nextRequest } from './api/requests/i18next';
 import 'normalize.css';
 import '@/styles/global.css';
 import '@/styles/variables.module.scss';
+import { TODO_LIST_PAGE_NAME } from './pages/todo-list/page/_constants';
 
 const ROOT_ELEMENT = document.getElementById('root');
 
 const router = configureRouter({
-  defaultRoute: 'home',
+  defaultRoute: TODO_LIST_PAGE_NAME,
   eventNameToCancelRequests: ABORT_REQUEST_EVENT_NAME,
   // uncomment if you need envs from window (for example for request endpoints)
   // enableWindowEnvsMiddleware: true,
