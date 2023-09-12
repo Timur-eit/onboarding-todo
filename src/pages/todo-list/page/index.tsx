@@ -14,7 +14,7 @@ import {
   ETodoErrors,
 } from '../_redux/todo-list';
 import styles from './index.module.scss';
-import { List } from './_components/list';
+import { ConnectedList } from './_components/list';
 import { todoLocalizationMap as i18nKeyMap } from './_localization/localization-map';
 
 const BLOCK_NAME = 'Home-page';
@@ -42,7 +42,7 @@ const ListPageWrapper = memo(({ loadings, errors }: TProps) => {
             size="h2"
             text={i18next.t(i18nKeyMap.titles.list)}
           />
-          <List />
+          <ConnectedList />
         </Card>
       </MainLayout>
     </div>
