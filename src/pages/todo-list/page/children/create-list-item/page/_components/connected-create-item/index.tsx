@@ -64,7 +64,7 @@ const mapDispatchToProps = {
   createNewItem: createItemAction,
 };
 
-export const CreateItem = connect(
+export const ConnectedCreateItem = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(CreateItemWrapper);

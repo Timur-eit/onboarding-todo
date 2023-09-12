@@ -10,7 +10,7 @@ import {
   getLoadings,
 } from '@/pages/todo-list/_redux/todo-list';
 import { AltContent } from '@/_components/alt-content';
-import { CreateItem } from './_components/create-item';
+import { ConnectedCreateItem } from './_components/connected-create-item';
 
 type TProps = {
   loadings: TTodoListState['loadings'];
@@ -28,7 +28,7 @@ export const CreatePageWrapper = memo(({ loadings, errors }: TProps) => {
   return (
     <MainLayout>
       <Card>
-        <CreateItem />
+        <ConnectedCreateItem />
       </Card>
     </MainLayout>
   );
