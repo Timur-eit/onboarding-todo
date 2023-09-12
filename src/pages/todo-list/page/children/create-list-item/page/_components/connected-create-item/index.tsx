@@ -11,7 +11,7 @@ import {
   getCompleteStatuses,
 } from '@/pages/todo-list/_redux/todo-list';
 
-type TSateMap = {
+type TStateMap = {
   completeState: ReturnType<typeof getCompleteStatuses>;
 };
 
@@ -19,7 +19,7 @@ type TDispatchMap = {
   createNewItem: typeof createItemAction;
 };
 
-type TProps = TSateMap & TDispatchMap;
+type TProps = TStateMap & TDispatchMap;
 
 export const CreateItemWrapper = memo(
   ({ completeState, createNewItem }: TProps) => {
