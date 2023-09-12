@@ -14,10 +14,13 @@ export function* createItemWorkerSaga({ payload }: TCreateItemActionSaga) {
       put(setLoadingsAction({ [ETodoLoadings.ADD_ITEM]: true })),
     ]);
 
-    const { data, error, errorText } = yield call(createTodoItem, payload);
+    const { error, errorText, additionalErrors } = yield call(
+      createTodoItem,
+      payload,
+    );
 
-    if (error || data.error) {
-      throw new Error(errorText ?? data.error);
+    if (error || errorText || additionalErrors) {
+      throw new Error(errorText ?? additionalErrors);
     }
     yield put(setCompleteAction({ isCreated: true }));
   } catch (error) {
