@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteNode } from '@wildberries/service-router';
 import { ReduxStoreLoader } from '@mihanizm56/redux-core-modules';
 import { AppLayout } from '@/_layouts/app-layout';
-import { Page } from './page';
+import { ListPage } from './page';
 import { TODO_LIST_PAGE_NAME } from './page/_constants';
 import { storeInjectConfig } from './_redux/todo-list/store-inject-config';
 
@@ -21,7 +21,7 @@ const action = async ({ store, toState, fromState }) => ({
                 storeInjectConfig={storeInjectConfig({ store })}
                 toState={toState}
               >
-                <Page />
+                <ListPage />
               </ReduxStoreLoader>
             );
           }

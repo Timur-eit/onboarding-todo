@@ -8,7 +8,7 @@ import {
 } from '@/pages/todo-list/_redux/todo-list';
 import { createItemWatcherSaga } from '@/pages/todo-list/_redux/todo-list/sagas/create-item-watcher-saga';
 import reducerTodoList from '@/pages/todo-list/_redux/todo-list/reducer';
-import { Page } from './page';
+import { CreatePage } from './page';
 import { CREATE_ITEM_PAGE_PAGE_NODE } from './_constants';
 
 const pageNode = CREATE_ITEM_PAGE_PAGE_NODE;
@@ -39,7 +39,7 @@ const action = async ({ fromState, toState }) => ({
                 }}
                 toState={toState}
               >
-                <Page />
+                <CreatePage />
               </ReduxStoreLoader>
             );
           }

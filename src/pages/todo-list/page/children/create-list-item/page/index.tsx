@@ -17,7 +17,7 @@ type TProps = {
   errors: TTodoListState['errors'];
 };
 
-export const PageWrapper = memo(({ loadings, errors }: TProps) => {
+export const CreatePageWrapper = memo(({ loadings, errors }: TProps) => {
   const isLoading = loadings[ETodoLoadings.ADD_ITEM];
   const isError = errors[ETodoErrors.ADD_ITEM];
 
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => ({
   errors: getErrors(state),
 });
 
-export const Page = connect(mapStateToProps)(PageWrapper);
+export const CreatePage = connect(mapStateToProps)(CreatePageWrapper);
