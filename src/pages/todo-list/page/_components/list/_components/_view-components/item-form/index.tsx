@@ -8,12 +8,12 @@ import { FormView } from './_view-components/form-view';
 type TProps = {
   isEdit: boolean;
   itemData?: TListItem;
-  submitHandler: (values: TItemFormValues) => void;
-  cancelHandler: () => void;
+  handleSubmit: (values: TItemFormValues) => void;
+  handleCancel: () => void;
 };
 
 export const ItemFormView = memo(
-  ({ isEdit, itemData, submitHandler, cancelHandler }: TProps) => {
+  ({ isEdit, itemData, handleSubmit: onSubmit, handleCancel }: TProps) => {
     const formInitValues = useMemo((): TItemFormValues => {
       if (isEdit) {
         return {
@@ -31,7 +31,7 @@ export const ItemFormView = memo(
     useEffect(() => {
       const escapeHandler = (event: KeyboardEvent): void => {
         if (event.key === 'Escape' || event.key === 'Esc') {
-          cancelHandler();
+          handleCancel();
         }
       };
       window.addEventListener('keydown', escapeHandler);
@@ -39,18 +39,18 @@ export const ItemFormView = memo(
       return () => {
         window.removeEventListener('keypress', escapeHandler);
       };
-    }, [cancelHandler]);
+    }, [handleCancel]);
 
     return (
       <Form
         initialValues={formInitValues}
-        onSubmit={submitHandler}
+        onSubmit={onSubmit}
         validate={todoFormValidation}
       >
         {({ handleSubmit, errors, touched }) => (
           <FormView
-            cancel={cancelHandler}
-            submit={handleSubmit}
+            onCancel={handleCancel}
+            onSubmit={handleSubmit}
             validation={{ errors, touched }}
           />
         )}

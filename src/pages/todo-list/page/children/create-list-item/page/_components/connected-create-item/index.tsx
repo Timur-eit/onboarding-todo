@@ -54,9 +54,9 @@ export const CreateItemWrapper = memo(
           text={i18next.t(i18nKeyMap.titles.create)}
         />
         <ItemFormView
-          cancelHandler={cancelHandler}
+          handleCancel={cancelHandler}
+          handleSubmit={submitCreate}
           isEdit={false}
-          submitHandler={submitCreate}
         />
       </>
     );

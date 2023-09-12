@@ -16,8 +16,8 @@ const BLOCK_NAME = 'Form';
 const cn = classnames.bind(styles);
 
 type TProps = {
-  submit: React.FormEventHandler<HTMLFormElement>;
-  cancel: () => void;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  onCancel: () => void;
   validation: {
     errors: TTodoFormErrors;
     touched: TTodoFormErrors;
@@ -25,8 +25,8 @@ type TProps = {
 };
 
 export const FormView = memo(
-  ({ submit, cancel, validation: { touched, errors } }: TProps) => (
-    <form className={cn(BLOCK_NAME)} onSubmit={submit}>
+  ({ onSubmit, onCancel, validation: { touched, errors } }: TProps) => (
+    <form className={cn(BLOCK_NAME)} onSubmit={onSubmit}>
       <Field
         component={FormSimpleInput}
         externalErrorMessage={
@@ -59,7 +59,7 @@ export const FormView = memo(
           variant="accent"
         />
         <ButtonLink
-          onClick={cancel}
+          onClick={onCancel}
           text={i18next.t(i18nKeyMap.buttonLabels.cancel)}
           type="button"
           variant="remove"
