@@ -1,14 +1,11 @@
 @import "@wildberries/ui-kit/lib/styles/media.module.scss";
 
-.ToDoForm {
-  gap: 18px;
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: 100%;
-    justify-content: center;
-  }
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  justify-content: center;
 
   &__button-block {
     display: flex;
@@ -18,10 +15,8 @@
 }
 
 @media #{$tablet} {
-  .ToDoForm {
-    &__form {
-      gap: 12px;
-    }
+  .Form {
+    gap: 12px;
     &__button-block {
       display: flex;
       flex-direction: column;
@@ -32,10 +27,8 @@
 
 
 @media #{$mobile} {
-  .ToDoForm {
-    &__form {
-      gap: 10px;
-    }
+  .Form {
+    gap: 10px;
     &__button-block {
       display: flex;
       flex-direction: column;
@@ -45,10 +38,8 @@
 }
 
 @media #{$mobile-small} {
-  .ToDoForm {
-    &__form {
-      gap: 10px;
-    }
+  .Form {
+    gap: 10px;
     &__button-block {
       display: flex;
       flex-direction: column;

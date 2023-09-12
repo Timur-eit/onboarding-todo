@@ -1,20 +1,9 @@
 import { memo, useCallback, useEffect } from 'react';
-import { Form, Field } from 'react-final-form';
-import {
-  ButtonLink,
-  FormSimpleInput,
-  FormTextAreaInput,
-} from '@wildberries/ui-kit';
-import i18next from 'i18next';
-import classnames from 'classnames/bind';
+import { Form } from 'react-final-form';
 import { TListItem } from '@/pages/todo-list/_redux/todo-list';
-import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
 import { ItemFormFieldNames, TItemFormValues } from './types';
 import { todoFormValidation } from './validation';
-import styles from './index.module.scss';
-
-const BLOCK_NAME = 'ToDoForm';
-const cn = classnames.bind(styles);
+import { FormView } from './_view-components/form-view';
 
 type TProps = {
   isEdit: boolean;
@@ -53,71 +42,14 @@ export const ItemFormView = memo(
     }, [cancelHandler]);
 
     return (
-      <div className={cn(BLOCK_NAME)}>
-        <Form
-          initialValues={getFormInitValues()}
-          onSubmit={submitHandler}
-          render={({ handleSubmit }) => (
-            <form className={cn(`${BLOCK_NAME}__form`)} onSubmit={handleSubmit}>
-              <div>
-                <Field name={ItemFormFieldNames.TITLE}>
-                  {({ input, meta }) => (
-                    <FormSimpleInput
-                      externalErrorMessage={
-                        meta.touched && meta.error && meta.error
-                      }
-                      id={ItemFormFieldNames.TITLE}
-                      input={input}
-                      label={i18next.t(i18nKeyMap.fieldLabels.title)}
-                      meta={meta}
-                      name={ItemFormFieldNames.TITLE}
-                      placeholder={i18next.t(i18nKeyMap.fieldLabels.title)}
-                      required
-                    />
-                  )}
-                </Field>
-              </div>
-
-              <div>
-                <Field name={ItemFormFieldNames.DESC}>
-                  {({ input, meta }) => (
-                    <FormTextAreaInput
-                      externalErrorMessage={
-                        meta.touched && meta.error && meta.error
-                      }
-                      id={ItemFormFieldNames.DESC}
-                      input={input}
-                      label={i18next.t(i18nKeyMap.fieldLabels.description)}
-                      meta={meta}
-                      name={ItemFormFieldNames.DESC}
-                      placeholder={i18next.t(
-                        i18nKeyMap.fieldLabels.description,
-                      )}
-                      required
-                      rows={5}
-                    />
-                  )}
-                </Field>
-              </div>
-
-              <div className={cn(`${BLOCK_NAME}__button-block`)}>
-                <ButtonLink
-                  text={i18next.t(i18nKeyMap.buttonLabels.submit)}
-                  type="submit"
-                  variant="accent"
-                />
-                <ButtonLink
-                  onClick={cancelHandler}
-                  text={i18next.t(i18nKeyMap.buttonLabels.cancel)}
-                  type="button"
-                  variant="remove"
-                />
-              </div>
-            </form>
-          )}
-          validate={todoFormValidation}
-        />
-      </div>
+      <Form
+        initialValues={getFormInitValues()}
+        onSubmit={submitHandler}
+        render={({ handleSubmit }) => (
+          <FormView cancel={cancelHandler} submit={handleSubmit} />
+        )}
+        validate={todoFormValidation}
+      />
     );
   },
 );
