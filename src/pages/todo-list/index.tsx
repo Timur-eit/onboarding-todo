@@ -4,7 +4,7 @@ import { ReduxStoreLoader } from '@mihanizm56/redux-core-modules';
 import { AppLayout } from '@/_layouts/app-layout';
 import { ListPage } from './page';
 import { TODO_LIST_PAGE_NAME } from './page/_constants';
-import { storeInjectConfig } from './_redux/todo-list/store-inject-config';
+import { storeInjectConfig } from './store-inject-config';
 
 const pageNode = TODO_LIST_PAGE_NAME;
 
