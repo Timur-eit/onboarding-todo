@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Text } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
@@ -16,10 +16,9 @@ import {
   setEditIModalOpenAction,
   updateItemAction,
 } from '@/pages/todo-list/_redux/todo-list';
-import { AltContent } from '@/_components/alt-content';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
-import { ItemFormView } from '../_view-components/item-form';
 import { TItemFormValues } from '../_view-components/item-form/types';
+import { EditModalContentView } from '../_view-components/edit-modal-content';
 import styles from './index.module.scss';
 
 const COMPONENT_STYLE_NAME = 'EditModal';
@@ -71,25 +70,6 @@ const ConnectedEditModalWrapper = ({
     setEditItemId(null);
   }, [setEditIModalOpen, setEditItemId]);
 
-  const modalContent = useMemo(() => {
-    if (isLoading || isError) {
-      return (
-        <div className={cn(`${COMPONENT_STYLE_NAME}__alt-content`)}>
-          <AltContent error={isError} loading={isLoading} />
-        </div>
-      );
-    }
-
-    return (
-      <ItemFormView
-        handleCancel={handleCancel}
-        handleSubmit={handleSubmit}
-        isEdit
-        itemData={listItem}
-      />
-    );
-  }, [handleCancel, handleSubmit, isError, isLoading, listItem]);
-
   return (
     <Modal isOpened={isOpen} isShowCloseIcon onClose={close}>
       <div className={cn(COMPONENT_STYLE_NAME)}>
@@ -98,7 +78,11 @@ const ConnectedEditModalWrapper = ({
           size="h2"
           text={i18next.t(i18nKeyMap.titles.edit)}
         />
-        {modalContent}
+        <EditModalContentView
+          editData={{ listItem, handleCancel, handleSubmit }}
+          isError={isError}
+          isLoading={isLoading}
+        />
       </div>
     </Modal>
   );
