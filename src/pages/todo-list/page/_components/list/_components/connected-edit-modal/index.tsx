@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Text } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
@@ -8,7 +8,6 @@ import {
   ETodoLoadings,
   TListItem,
   TTodoListState,
-  getCompleteStatuses,
   getErrors,
   getIsOpen,
   getListItem,
@@ -31,7 +30,6 @@ type TStateMap = {
   listItem: TListItem;
   loadings: TTodoListState['loadings'];
   errors: TTodoListState['errors'];
-  completeState: ReturnType<typeof getCompleteStatuses>;
 };
 
 type TDispatchMap = {
@@ -49,12 +47,10 @@ const ConnectedEditModalWrapper = ({
   setEditItemId,
   loadings,
   errors,
-  completeState,
   updateItem,
 }: TProps) => {
   const isLoading = loadings[ETodoLoadings.UPDATE_ITEM];
   const isError = errors[ETodoErrors.UPDATE_ITEM];
-  const { isEdited } = completeState;
 
   const close = useCallback(
     () => setEditIModalOpen(false),
@@ -74,12 +70,6 @@ const ConnectedEditModalWrapper = ({
     setEditIModalOpen(false);
     setEditItemId(null);
   }, [setEditIModalOpen, setEditItemId]);
-
-  useEffect(() => {
-    if (isEdited) {
-      handleCancel();
-    }
-  }, [handleCancel, isEdited]);
 
   const modalContent = useMemo(() => {
     if (isLoading || isError) {
@@ -119,7 +109,6 @@ const mapStateToProps = (state) => ({
   listItem: getListItem(state),
   loadings: getLoadings(state),
   errors: getErrors(state),
-  completeState: getCompleteStatuses(state),
 });
 
 const mapDispatchToProps = {

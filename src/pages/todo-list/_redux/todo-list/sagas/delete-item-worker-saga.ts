@@ -21,13 +21,10 @@ export function* deleteItemWorkerSaga({ payload }: TDeleteItemActionSaga) {
       put(setLoadingsAction({ [ETodoLoadings.DELETE_ITEM]: true })),
     ]);
 
-    const { error, errorText, additionalErrors } = yield call(
-      deleteTodoItem,
-      payload,
-    );
+    const { error, errorText } = yield call(deleteTodoItem, payload);
 
-    if (error || errorText || additionalErrors) {
-      throw new Error(errorText ?? additionalErrors);
+    if (error) {
+      throw new Error(errorText || 'delete item network error');
     }
     yield put(setCompleteAction({ isDeleted: true }));
 

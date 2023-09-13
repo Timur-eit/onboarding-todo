@@ -5,6 +5,8 @@ import {
   setErrorsAction,
   setListAction,
   setLoadingsAction,
+  setEditIModalOpenAction,
+  setEditIItemIdAction,
 } from '../actions';
 import {
   ETodoErrors,
@@ -21,22 +23,22 @@ export function* updateItemWorkerSaga({ payload }: TUpdateItemActionSaga) {
       put(setLoadingsAction({ [ETodoLoadings.UPDATE_ITEM]: true })),
     ]);
 
-    const { data, error, errorText, additionalErrors } = yield call(
-      updateTodoItem,
-      payload,
-    );
+    const { data, error, errorText } = yield call(updateTodoItem, payload);
 
-    if (error || errorText || additionalErrors) {
-      throw new Error(errorText ?? additionalErrors);
+    if (error) {
+      throw new Error(errorText || 'update item network error');
     }
-    yield put(setCompleteAction({ isEdited: true }));
 
     const list: TListItem[] = yield select(getListData);
     const updatedItemIndex = list.findIndex(({ id }) => id === data.id);
     const updatedList = [...list];
     updatedList[updatedItemIndex] = data;
-
     yield put(setListAction(updatedList));
+
+    yield all([
+      put(setEditIModalOpenAction(false)),
+      put(setEditIItemIdAction(null)),
+    ]);
   } catch (error) {
     yield put(setErrorsAction({ [ETodoErrors.UPDATE_ITEM]: true }));
   } finally {
