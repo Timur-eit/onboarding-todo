@@ -4,14 +4,14 @@ import { TODO_LIST_PAGE_NAME } from '@/pages/todo-list/page/_constants';
 import { setErrorsAction, setLoadingsAction } from '../actions';
 import { ETodoErrors, ETodoLoadings, TCreateItemActionSaga } from '../types';
 
-export function* createItemWorkerSaga({ payload }: TCreateItemActionSaga) {
+export function* createItemWorkerSaga({
+  payload: { title, description, router },
+}: TCreateItemActionSaga) {
   try {
     yield all([
       put(setErrorsAction({ [ETodoErrors.ADD_ITEM]: false })),
       put(setLoadingsAction({ [ETodoLoadings.ADD_ITEM]: true })),
     ]);
-
-    const { title, description, router } = payload;
 
     const { error, errorText } = yield call(createTodoItem, {
       title,
