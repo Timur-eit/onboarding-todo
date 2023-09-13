@@ -17,14 +17,14 @@ type TProps = { itemId: string } & TDispatchMap;
 
 export const ConnectedEditButtonWrapper = memo(
   ({ itemId, setEditItemId, setEditIModalOpen }: TProps) => {
-    const clickHandler = useCallback(() => {
+    const handleClick = useCallback(() => {
       setEditIModalOpen(true);
       setEditItemId(itemId);
     }, [itemId, setEditIModalOpen, setEditItemId]);
 
     return (
       <ButtonLink
-        onClick={clickHandler}
+        onClick={handleClick}
         size="small"
         text={i18next.t(i18nKeyMap.buttonLabels.edit)}
         variant="adaptive"
