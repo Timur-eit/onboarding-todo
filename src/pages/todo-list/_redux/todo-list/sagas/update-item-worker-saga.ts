@@ -1,7 +1,6 @@
 import { all, call, put, select } from 'redux-saga/effects';
 import { updateTodoItem } from '@/api/requests/update-todo-etem';
 import {
-  setCompleteAction,
   setErrorsAction,
   setListAction,
   setLoadingsAction,
@@ -42,9 +41,6 @@ export function* updateItemWorkerSaga({ payload }: TUpdateItemActionSaga) {
   } catch (error) {
     yield put(setErrorsAction({ [ETodoErrors.UPDATE_ITEM]: true }));
   } finally {
-    yield all([
-      put(setLoadingsAction({ [ETodoLoadings.UPDATE_ITEM]: false })),
-      put(setCompleteAction({ isEdited: false })),
-    ]);
+    yield put(setLoadingsAction({ [ETodoLoadings.UPDATE_ITEM]: false }));
   }
 }

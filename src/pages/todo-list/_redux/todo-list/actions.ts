@@ -51,16 +51,6 @@ export const createItemAction: IReduxAction<
 });
 createItemAction.type = CREATE_ITEM;
 
-export const SET_COMPLETE_STATUS = 'SET_COMPLETE_STATUS';
-export const setCompleteAction: IReduxAction<
-  TTodoListState['completeStatuses'],
-  typeof SET_COMPLETE_STATUS
-> = (payload) => ({
-  type: SET_COMPLETE_STATUS,
-  payload,
-});
-setCompleteAction.type = SET_COMPLETE_STATUS;
-
 export const SET_EDIT_MODAL_OPEN = 'SET_EDIT_MODAL_OPEN';
 export const setEditModalOpenAction: IReduxAction<
   boolean,

@@ -22,11 +22,6 @@ export const getListData = createSelector(
   ({ listData }: TTodoListState) => listData,
 );
 
-export const getCompleteStatuses = createSelector(
-  [todoListStorageSelector],
-  ({ completeStatuses }: TTodoListState) => completeStatuses,
-);
-
 export const getIsOpen = createSelector(
   [todoListStorageSelector],
   ({ isEditModalOpen }: TTodoListState) => isEditModalOpen,
