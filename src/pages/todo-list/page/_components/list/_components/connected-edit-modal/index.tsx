@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
-import { Modal } from '@wildberries/ui-kit';
+import { Modal, Text } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
+import i18next from 'i18next';
 import {
   ETodoErrors,
   ETodoLoadings,
@@ -17,6 +18,7 @@ import {
   updateItemAction,
 } from '@/pages/todo-list/_redux/todo-list';
 import { AltContent } from '@/_components/alt-content';
+import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
 import { ItemFormView } from '../_view-components/item-form';
 import { TItemFormValues } from '../_view-components/item-form/types';
 import styles from './index.module.scss';
@@ -79,8 +81,6 @@ const ConnectedEditModalWrapper = ({
     }
   }, [handleCancel, isEdited]);
 
-  // TODO i18n + title
-
   const modalContent = useMemo(() => {
     if (isLoading || isError) {
       return (
@@ -102,7 +102,14 @@ const ConnectedEditModalWrapper = ({
 
   return (
     <Modal isOpened={isOpen} isShowCloseIcon onClose={close}>
-      <div className={cn(COMPONENT_STYLE_NAME)}>{modalContent}</div>
+      <div className={cn(COMPONENT_STYLE_NAME)}>
+        <Text
+          color="black"
+          size="h2"
+          text={i18next.t(i18nKeyMap.titles.edit)}
+        />
+        {modalContent}
+      </div>
     </Modal>
   );
 };
