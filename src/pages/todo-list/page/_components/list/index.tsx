@@ -21,7 +21,7 @@ import { ListItemContent } from './_components/list-item-content';
 import { convertForAccordion } from './_utils/convert-data-for-accordion';
 import styles from './index.module.scss';
 
-const DELETE_ITEM_DELAY = 500;
+const DELETE_ITEM_DELAY = 300;
 
 const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
