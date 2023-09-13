@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Text } from '@wildberries/ui-kit';
+import { Modal } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
 import i18next from 'i18next';
 import {
@@ -68,13 +68,13 @@ const ConnectedEditModalWrapper = ({
   }, [setEditModalOpen, setEditItemId]);
 
   return (
-    <Modal isOpened={isOpen} isShowCloseIcon onClose={close}>
+    <Modal
+      isOpened={isOpen}
+      isShowCloseIcon
+      onClose={close}
+      title={i18next.t(i18nKeyMap.titles.edit)}
+    >
       <div className={cn(COMPONENT_STYLE_NAME)}>
-        <Text
-          color="black"
-          size="h2"
-          text={i18next.t(i18nKeyMap.titles.edit)}
-        />
         <EditModalContentView
           editData={{ listItem, handleCancel, handleSubmit }}
           isError={isError}
