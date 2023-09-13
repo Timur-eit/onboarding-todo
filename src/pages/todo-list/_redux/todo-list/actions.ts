@@ -4,6 +4,7 @@ import {
   TListItem,
   TCreateItemPayload,
   TUpdateItemPayload,
+  TDeleteItemPayload,
 } from './types';
 
 export const SET_LOADINGS = 'SET_LOADINGS';
@@ -89,3 +90,13 @@ export const updateItemAction: IReduxAction<
   payload,
 });
 updateItemAction.type = UPDATE_ITEM;
+
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const deleteItemAction: IReduxAction<
+  TDeleteItemPayload,
+  typeof DELETE_ITEM
+> = (payload) => ({
+  type: DELETE_ITEM,
+  payload,
+});
+deleteItemAction.type = DELETE_ITEM;

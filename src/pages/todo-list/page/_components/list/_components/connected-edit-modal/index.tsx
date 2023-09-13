@@ -59,7 +59,7 @@ const ConnectedEditModalWrapper = ({
     [setEditIModalOpen],
   );
 
-  const submitHandler = useCallback(
+  const handleSubmit = useCallback(
     ({ title, description }: TItemFormValues) => {
       if (listItem) {
         updateItem({ id: listItem.id, title, description });
@@ -68,16 +68,16 @@ const ConnectedEditModalWrapper = ({
     [listItem, updateItem],
   );
 
-  const cancelHandler = useCallback(() => {
+  const handleCancel = useCallback(() => {
     setEditIModalOpen(false);
     setEditItemId(null);
   }, [setEditIModalOpen, setEditItemId]);
 
   useEffect(() => {
     if (isEdited) {
-      cancelHandler();
+      handleCancel();
     }
-  }, [cancelHandler, isEdited]);
+  }, [handleCancel, isEdited]);
 
   // TODO i18n + title
 
@@ -92,13 +92,13 @@ const ConnectedEditModalWrapper = ({
 
     return (
       <ItemFormView
-        handleCancel={cancelHandler}
-        handleSubmit={submitHandler}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit}
         isEdit
         itemData={listItem}
       />
     );
-  }, [cancelHandler, isError, isLoading, listItem, submitHandler]);
+  }, [handleCancel, handleSubmit, isError, isLoading, listItem]);
 
   return (
     <Modal isOpened={isOpen} isShowCloseIcon onClose={close}>
