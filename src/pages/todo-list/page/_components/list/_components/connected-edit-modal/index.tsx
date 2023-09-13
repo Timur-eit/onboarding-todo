@@ -51,7 +51,10 @@ const ConnectedEditModalWrapper = ({
   const isLoading = loadings[ETodoLoadings.UPDATE_ITEM];
   const isError = errors[ETodoErrors.UPDATE_ITEM];
 
-  const close = useCallback(() => setEditModalOpen(false), [setEditModalOpen]);
+  const handleClose = useCallback(
+    () => setEditModalOpen(false),
+    [setEditModalOpen],
+  );
 
   const handleSubmit = useCallback(
     ({ title, description }: TItemFormValues) => {
@@ -71,14 +74,16 @@ const ConnectedEditModalWrapper = ({
     <Modal
       isOpened={isOpen}
       isShowCloseIcon
-      onClose={close}
+      onClose={handleClose}
       title={i18next.t(i18nKeyMap.titles.edit)}
     >
       <div className={cn(COMPONENT_STYLE_NAME)}>
         <EditModalContentView
-          editData={{ listItem, handleCancel, handleSubmit }}
+          handleCancel={handleCancel}
+          handleSubmit={handleSubmit}
           isError={isError}
           isLoading={isLoading}
+          listItem={listItem}
         />
       </div>
     </Modal>

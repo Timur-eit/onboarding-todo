@@ -12,19 +12,13 @@ const cn = classnames.bind(styles);
 type TProps = {
   isLoading: boolean;
   isError: boolean;
-  editData: {
-    listItem: TListItem;
-    handleCancel: () => void;
-    handleSubmit: (values: TItemFormValues) => void;
-  };
+  listItem: TListItem;
+  handleCancel: () => void;
+  handleSubmit: (values: TItemFormValues) => void;
 };
 
 export const EditModalContentView = memo(
-  ({
-    isLoading,
-    isError,
-    editData: { listItem, handleCancel, handleSubmit },
-  }: TProps) => {
+  ({ isLoading, isError, listItem, handleCancel, handleSubmit }: TProps) => {
     if (isLoading || isError) {
       return (
         <div className={cn(COMPONENT_STYLE_NAME)}>

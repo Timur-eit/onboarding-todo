@@ -21,7 +21,7 @@ export function* createItemWorkerSaga({
     if (error) {
       throw new Error(errorText || 'create item network error');
     }
-    yield call(() => router.navigate(TODO_LIST_PAGE_NAME));
+    yield router.navigate(TODO_LIST_PAGE_NAME);
   } catch (error) {
     yield put(setErrorsAction({ [ETodoErrors.ADD_ITEM]: true }));
   } finally {

@@ -18,12 +18,12 @@ type TDispatch = {
 type TProps = { router: Router } & TDispatch;
 
 export const CreateItemWrapper = memo(({ router, createNewItem }: TProps) => {
-  const cancelHandler = useCallback(
+  const handleCancel = useCallback(
     () => router.navigate(TODO_LIST_PAGE_NAME),
     [router],
   );
 
-  const submitCreate = useCallback(
+  const handleSubmit = useCallback(
     (values: TItemFormValues) => {
       createNewItem({ ...values, router });
     },
@@ -38,8 +38,8 @@ export const CreateItemWrapper = memo(({ router, createNewItem }: TProps) => {
         text={i18next.t(i18nKeyMap.titles.create)}
       />
       <ItemFormView
-        handleCancel={cancelHandler}
-        handleSubmit={submitCreate}
+        handleCancel={handleCancel}
+        handleSubmit={handleSubmit}
         isEdit={false}
       />
     </>
