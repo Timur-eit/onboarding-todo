@@ -13,7 +13,7 @@ import {
   getListItem,
   getLoadings,
   setEditIItemIdAction,
-  setEditIModalOpenAction,
+  setEditModalOpenAction,
   updateItemAction,
 } from '@/pages/todo-list/_redux/todo-list';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
@@ -24,25 +24,25 @@ import styles from './index.module.scss';
 const COMPONENT_STYLE_NAME = 'EditModal';
 const cn = classnames.bind(styles);
 
-type TStateMap = {
+type TState = {
   isOpen: boolean;
   listItem: TListItem;
   loadings: TTodoListState['loadings'];
   errors: TTodoListState['errors'];
 };
 
-type TDispatchMap = {
-  setEditIModalOpen: typeof setEditIModalOpenAction;
+type TDispatch = {
+  setEditModalOpen: typeof setEditModalOpenAction;
   setEditItemId: typeof setEditIItemIdAction;
   updateItem: typeof updateItemAction;
 };
 
-type TProps = TStateMap & TDispatchMap;
+type TProps = TState & TDispatch;
 
 const ConnectedEditModalWrapper = ({
   isOpen,
   listItem,
-  setEditIModalOpen,
+  setEditModalOpen,
   setEditItemId,
   loadings,
   errors,
@@ -51,10 +51,7 @@ const ConnectedEditModalWrapper = ({
   const isLoading = loadings[ETodoLoadings.UPDATE_ITEM];
   const isError = errors[ETodoErrors.UPDATE_ITEM];
 
-  const close = useCallback(
-    () => setEditIModalOpen(false),
-    [setEditIModalOpen],
-  );
+  const close = useCallback(() => setEditModalOpen(false), [setEditModalOpen]);
 
   const handleSubmit = useCallback(
     ({ title, description }: TItemFormValues) => {
@@ -66,9 +63,9 @@ const ConnectedEditModalWrapper = ({
   );
 
   const handleCancel = useCallback(() => {
-    setEditIModalOpen(false);
+    setEditModalOpen(false);
     setEditItemId(null);
-  }, [setEditIModalOpen, setEditItemId]);
+  }, [setEditModalOpen, setEditItemId]);
 
   return (
     <Modal isOpened={isOpen} isShowCloseIcon onClose={close}>
@@ -96,7 +93,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  setEditIModalOpen: setEditIModalOpenAction,
+  setEditModalOpen: setEditModalOpenAction,
   setEditItemId: setEditIItemIdAction,
   updateItem: updateItemAction,
 };

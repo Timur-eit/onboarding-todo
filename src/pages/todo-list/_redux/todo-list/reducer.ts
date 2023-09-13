@@ -8,7 +8,7 @@ import {
   SET_COMPLETE_STATUS,
   setCompleteAction,
   SET_EDIT_MODAL_OPEN,
-  setEditIModalOpenAction,
+  setEditModalOpenAction,
   setEditIItemIdAction,
   SET_EDIT_ITEM_ID,
 } from './actions';
@@ -33,7 +33,6 @@ export const initialState: TTodoListState = {
     isDeleted: false,
   },
   listData: [],
-  itemToEdit: null,
   isEditModalOpen: false,
   editItemId: null,
 };
@@ -43,7 +42,7 @@ export type TActions = ReturnType<
   | typeof setListAction
   | typeof setLoadingsAction
   | typeof setCompleteAction
-  | typeof setEditIModalOpenAction
+  | typeof setEditModalOpenAction
   | typeof setEditIItemIdAction
 >;
 

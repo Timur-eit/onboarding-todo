@@ -14,15 +14,15 @@ import {
 } from '@/pages/todo-list/_redux/todo-list';
 import { TODO_LIST_PAGE_NAME } from '@/pages/todo-list/page/_constants';
 
-type TStateMap = {
+type TState = {
   completeState: ReturnType<typeof getCompleteStatuses>;
 };
 
-type TDispatchMap = {
+type TDispatch = {
   createNewItem: typeof createItemAction;
 };
 
-type TProps = { router: Router } & TStateMap & TDispatchMap;
+type TProps = { router: Router } & TState & TDispatch;
 
 export const CreateItemWrapper = memo(
   ({ router, completeState, createNewItem }: TProps) => {

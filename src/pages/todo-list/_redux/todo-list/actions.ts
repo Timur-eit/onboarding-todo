@@ -62,14 +62,14 @@ export const setCompleteAction: IReduxAction<
 setCompleteAction.type = SET_COMPLETE_STATUS;
 
 export const SET_EDIT_MODAL_OPEN = 'SET_EDIT_MODAL_OPEN';
-export const setEditIModalOpenAction: IReduxAction<
+export const setEditModalOpenAction: IReduxAction<
   boolean,
   typeof SET_EDIT_MODAL_OPEN
 > = (payload) => ({
   type: SET_EDIT_MODAL_OPEN,
   payload,
 });
-setEditIModalOpenAction.type = SET_EDIT_MODAL_OPEN;
+setEditModalOpenAction.type = SET_EDIT_MODAL_OPEN;
 
 export const SET_EDIT_ITEM_ID = 'SET_EDIT_ITEM_ID';
 export const setEditIItemIdAction: IReduxAction<

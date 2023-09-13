@@ -5,7 +5,7 @@ import {
   setErrorsAction,
   setListAction,
   setLoadingsAction,
-  setEditIModalOpenAction,
+  setEditModalOpenAction,
   setEditIItemIdAction,
 } from '../actions';
 import {
@@ -36,7 +36,7 @@ export function* updateItemWorkerSaga({ payload }: TUpdateItemActionSaga) {
     yield put(setListAction(updatedList));
 
     yield all([
-      put(setEditIModalOpenAction(false)),
+      put(setEditModalOpenAction(false)),
       put(setEditIItemIdAction(null)),
     ]);
   } catch (error) {

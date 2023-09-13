@@ -5,22 +5,22 @@ import { connect } from 'react-redux';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
 import {
   setEditIItemIdAction,
-  setEditIModalOpenAction,
+  setEditModalOpenAction,
 } from '@/pages/todo-list/_redux/todo-list';
 
-type TDispatchMap = {
-  setEditIModalOpen: typeof setEditIModalOpenAction;
+type TDispatch = {
+  setEditModalOpen: typeof setEditModalOpenAction;
   setEditItemId: typeof setEditIItemIdAction;
 };
 
-type TProps = { itemId: string } & TDispatchMap;
+type TProps = { itemId: string } & TDispatch;
 
-export const ConnectedEditButtonWrapper = memo(
-  ({ itemId, setEditItemId, setEditIModalOpen }: TProps) => {
+export const EditButtonWrapper = memo(
+  ({ itemId, setEditItemId, setEditModalOpen }: TProps) => {
     const handleClick = useCallback(() => {
-      setEditIModalOpen(true);
+      setEditModalOpen(true);
       setEditItemId(itemId);
-    }, [itemId, setEditIModalOpen, setEditItemId]);
+    }, [itemId, setEditModalOpen, setEditItemId]);
 
     return (
       <ButtonLink
@@ -34,11 +34,11 @@ export const ConnectedEditButtonWrapper = memo(
 );
 
 const mapDispatchToProps = {
-  setEditIModalOpen: setEditIModalOpenAction,
+  setEditModalOpen: setEditModalOpenAction,
   setEditItemId: setEditIItemIdAction,
 };
 
 export const ConnectedEditButton = connect(
   null,
   mapDispatchToProps,
-)(ConnectedEditButtonWrapper);
+)(EditButtonWrapper);

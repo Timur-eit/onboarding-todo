@@ -23,7 +23,6 @@ export type TTodoListState = {
   loadings: { [key in ETodoLoadings]?: boolean };
   errors: { [key in ETodoErrors]?: boolean };
   listData: TListItem[];
-  itemToEdit: null | TListItem;
   completeStatuses: {
     isCreated?: boolean;
     isEdited?: boolean;

@@ -26,18 +26,18 @@ const DELETE_ITEM_DELAY = 500;
 const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
 
-type TStateMap = {
+type TState = {
   listData: TListItem[];
 };
 
-type TDispatchMap = {
+type TDispatch = {
   deleteItem: typeof deleteItemAction;
 };
 
 type TProps = {
   router: Router;
-} & TStateMap &
-  TDispatchMap;
+} & TState &
+  TDispatch;
 
 export const ListWrapper = memo(({ listData, router, deleteItem }: TProps) => {
   const [selected, setSelected] = useState('');
