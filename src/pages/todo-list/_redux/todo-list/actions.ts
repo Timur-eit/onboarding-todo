@@ -1,5 +1,11 @@
 import { BaseAction, IReduxAction } from '@mihanizm56/redux-core-modules';
-import { TTodoListState, TListItem, TCreateItemPayload } from './types';
+import {
+  TTodoListState,
+  TListItem,
+  TCreateItemPayload,
+  TUpdateItemPayload,
+  TDeleteItemPayload,
+} from './types';
 
 export const SET_LOADINGS = 'SET_LOADINGS';
 export const setLoadingsAction: IReduxAction<
@@ -45,12 +51,42 @@ export const createItemAction: IReduxAction<
 });
 createItemAction.type = CREATE_ITEM;
 
-export const SET_COMPLETE_STATUS = 'SET_COMPLETE_STATUS';
-export const setCompleteAction: IReduxAction<
-  TTodoListState['completeStatuses'],
-  typeof SET_COMPLETE_STATUS
+export const SET_EDIT_MODAL_OPEN = 'SET_EDIT_MODAL_OPEN';
+export const setEditModalOpenAction: IReduxAction<
+  boolean,
+  typeof SET_EDIT_MODAL_OPEN
 > = (payload) => ({
-  type: SET_COMPLETE_STATUS,
+  type: SET_EDIT_MODAL_OPEN,
   payload,
 });
-setCompleteAction.type = SET_COMPLETE_STATUS;
+setEditModalOpenAction.type = SET_EDIT_MODAL_OPEN;
+
+export const SET_EDIT_ITEM_ID = 'SET_EDIT_ITEM_ID';
+export const setEditIItemIdAction: IReduxAction<
+  string,
+  typeof SET_EDIT_ITEM_ID
+> = (payload) => ({
+  type: SET_EDIT_ITEM_ID,
+  payload,
+});
+setEditIItemIdAction.type = SET_EDIT_ITEM_ID;
+
+export const UPDATE_ITEM = 'UPDATE_ITEM';
+export const updateItemAction: IReduxAction<
+  TUpdateItemPayload,
+  typeof UPDATE_ITEM
+> = (payload) => ({
+  type: UPDATE_ITEM,
+  payload,
+});
+updateItemAction.type = UPDATE_ITEM;
+
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const deleteItemAction: IReduxAction<
+  TDeleteItemPayload,
+  typeof DELETE_ITEM
+> = (payload) => ({
+  type: DELETE_ITEM,
+  payload,
+});
+deleteItemAction.type = DELETE_ITEM;

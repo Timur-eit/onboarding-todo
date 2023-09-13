@@ -5,8 +5,10 @@ import {
   setLoadingsAction,
   setListAction,
   SET_LIST,
-  SET_COMPLETE_STATUS,
-  setCompleteAction,
+  SET_EDIT_MODAL_OPEN,
+  setEditModalOpenAction,
+  setEditIItemIdAction,
+  SET_EDIT_ITEM_ID,
 } from './actions';
 import { ETodoErrors, ETodoLoadings, TTodoListState } from './types';
 
@@ -23,19 +25,17 @@ export const initialState: TTodoListState = {
     [ETodoErrors.UPDATE_ITEM]: false,
     [ETodoErrors.DELETE_ITEM]: false,
   },
-  completeStatuses: {
-    isCreated: false,
-    isEdited: false,
-    isDeleted: false,
-  },
   listData: [],
+  isEditModalOpen: false,
+  editItemId: null,
 };
 
 export type TActions = ReturnType<
   | typeof setErrorsAction
   | typeof setListAction
   | typeof setLoadingsAction
-  | typeof setCompleteAction
+  | typeof setEditModalOpenAction
+  | typeof setEditIItemIdAction
 >;
 
 const reducer = (
@@ -67,13 +67,16 @@ const reducer = (
         listData: payload,
       };
     }
-    case SET_COMPLETE_STATUS: {
+    case SET_EDIT_MODAL_OPEN: {
       return {
         ...state,
-        completeStatuses: {
-          ...state.completeStatuses,
-          ...payload,
-        },
+        isEditModalOpen: payload,
+      };
+    }
+    case SET_EDIT_ITEM_ID: {
+      return {
+        ...state,
+        editItemId: payload,
       };
     }
 

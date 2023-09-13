@@ -11,22 +11,35 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router5';
 import { Router } from 'router5';
 import { TListItem } from '@/pages/todo-list/_redux/todo-list/types';
-import { getListData } from '@/pages/todo-list/_redux/todo-list';
+import {
+  deleteItemAction,
+  getListData,
+} from '@/pages/todo-list/_redux/todo-list';
 import { todoLocalizationMap as i18nMap } from '../../_localization/localization-map';
 import { CREATE_ITEM_PAGE_PAGE_NODE } from '../../children/create-list-item/_constants';
 import { ListItemContent } from './_components/list-item-content';
 import { convertForAccordion } from './_utils/convert-data-for-accordion';
 import styles from './index.module.scss';
 
+const DELETE_ITEM_DELAY = 300;
+
 const BLOCK_NAME = 'List';
 const cn = classnames.bind(styles);
 
-type TProps = {
+type TState = {
   listData: TListItem[];
-  router: Router;
 };
 
-export const ListWrapper = memo(({ listData, router }: TProps) => {
+type TDispatch = {
+  deleteItem: typeof deleteItemAction;
+};
+
+type TProps = {
+  router: Router;
+} & TState &
+  TDispatch;
+
+export const ListWrapper = memo(({ listData, router, deleteItem }: TProps) => {
   const [selected, setSelected] = useState('');
 
   const createHandler = useCallback(
@@ -39,12 +52,18 @@ export const ListWrapper = memo(({ listData, router }: TProps) => {
     [],
   );
 
+  const handleDelete = useCallback(
+    (id: string) => {
+      deleteItem({ id });
+    },
+    [deleteItem],
+  );
+
   useEffect(() => {
     if (selected) {
-      // TODO функционал удаления
-      setTimeout(() => setSelected(''), 500);
+      setTimeout(() => handleDelete(selected), DELETE_ITEM_DELAY);
     }
-  }, [selected]);
+  }, [handleDelete, selected]);
 
   return (
     <div className={cn(BLOCK_NAME)}>
@@ -71,7 +90,11 @@ const mapStateToProps = (state) => ({
   listData: getListData(state),
 });
 
+const mapDispatchToProps = {
+  deleteItem: deleteItemAction,
+};
+
 export const ConnectedList = compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   withRouter,
 )(ListWrapper);

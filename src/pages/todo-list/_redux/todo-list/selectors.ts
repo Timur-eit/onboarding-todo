@@ -22,7 +22,13 @@ export const getListData = createSelector(
   ({ listData }: TTodoListState) => listData,
 );
 
-export const getCompleteStatuses = createSelector(
+export const getIsOpen = createSelector(
   [todoListStorageSelector],
-  ({ completeStatuses }: TTodoListState) => completeStatuses,
+  ({ isEditModalOpen }: TTodoListState) => isEditModalOpen,
+);
+
+export const getListItem = createSelector(
+  [todoListStorageSelector],
+  ({ editItemId, listData }: TTodoListState) =>
+    listData.find(({ id }) => id === editItemId),
 );

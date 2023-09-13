@@ -16,6 +16,7 @@ import {
 import styles from './index.module.scss';
 import { ConnectedList } from './_components/list';
 import { todoLocalizationMap as i18nKeyMap } from './_localization/localization-map';
+import { ConnectedEditModal } from './_components/list/_components/connected-edit-modal';
 
 const BLOCK_NAME = 'Home-page';
 const cn = classnames.bind(styles);
@@ -43,6 +44,7 @@ const ListPageWrapper = memo(({ loadings, errors }: TProps) => {
             text={i18next.t(i18nKeyMap.titles.list)}
           />
           <ConnectedList />
+          <ConnectedEditModal />
         </Card>
       </MainLayout>
     </div>

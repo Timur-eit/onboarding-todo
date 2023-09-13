@@ -12,10 +12,9 @@ export function* getTodoListDataWorkerSaga() {
 
     const { data, error, errorText } = yield call(getTodoList);
 
-    if (error || data.error) {
-      throw new Error(errorText ?? data.error);
+    if (error) {
+      throw new Error(errorText || 'get list network error');
     }
-
     yield put(setListAction(data));
   } catch (error) {
     yield put(setErrorsAction({ [ETodoErrors.GET_ALL]: true }));

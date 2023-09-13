@@ -1,3 +1,5 @@
+import { Router } from 'router5';
+
 export enum ETodoLoadings {
   GET_ALL = 'GET_ALL',
   ADD_ITEM = 'ADD_ITEM',
@@ -23,16 +25,28 @@ export type TTodoListState = {
   loadings: { [key in ETodoLoadings]?: boolean };
   errors: { [key in ETodoErrors]?: boolean };
   listData: TListItem[];
-  completeStatuses: {
-    isCreated?: boolean;
-    isEdited?: boolean;
-    isDeleted?: boolean;
-  };
+  isEditModalOpen: boolean;
+  editItemId: string | null;
 };
 
-export type TCreateItemPayload = Pick<TListItem, 'title' | 'description'>;
+export type TCreateItemPayload = Pick<TListItem, 'title' | 'description'> & {
+  router: Router;
+};
+export type TUpdateItemPayload = Pick<
+  TListItem,
+  'id' | 'title' | 'description'
+>;
+export type TDeleteItemPayload = Pick<TListItem, 'id'>;
 
 export type TCreateItemActionSaga = {
   type: string;
   payload: TCreateItemPayload;
+};
+export type TUpdateItemActionSaga = {
+  type: string;
+  payload: TUpdateItemPayload;
+};
+export type TDeleteItemActionSaga = {
+  type: string;
+  payload: TUpdateItemPayload;
 };
