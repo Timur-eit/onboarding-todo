@@ -1,22 +1,18 @@
 import {
   IAdvancedStore,
   StoreInjectConfig,
-} from '@mihanizm56/redux-core-modules';
-import { Dispatch } from 'redux';
-import { getTodoList } from '@/api/requests/get-todo-list-all';
-import reducerTodoList from '../_redux/todo-list/reducer';
+} from "@mihanizm56/redux-core-modules";
+import { Dispatch } from "redux";
+import { getTodoList } from "@/api/requests/get-todo-list-all";
+import reducerTodoList from "../_redux/todo-list/reducer";
 import {
-  DELETE_ITEM_WATCHER_SAGA_NAME,
   ETodoErrors,
   ETodoLoadings,
   TODO_LIST_REDUCER_NAME,
-  UPDATE_ITEM_WATCHER_SAGA_NAME,
   setErrorsAction,
   setListAction,
   setLoadingsAction,
-} from '../_redux/todo-list';
-import { updateItemWatcherSaga } from '../_redux/todo-list/sagas/update-item-watcher-saga';
-import { deleteItemWatcherSaga } from '../_redux/todo-list/sagas/delete-item-watcher-saga';
+} from "../_redux/todo-list";
 
 type TParams = {
   store: IAdvancedStore;
@@ -35,9 +31,6 @@ const callBackOnError = (params: {
 }) => params.dispatch(setErrorsAction({ [ETodoErrors.UPDATE_ITEM]: true }));
 
 export const storeInjectConfig = ({ store }: TParams): StoreInjectConfig => ({
-  // additionalConfig: {
-  //   callbackOnMount: () => store.dispatch(getListAction()),
-  // },
   initialLoadManagerConfig: {
     requestConfigList: [
       {
@@ -58,20 +51,6 @@ export const storeInjectConfig = ({ store }: TParams): StoreInjectConfig => ({
     {
       name: TODO_LIST_REDUCER_NAME,
       reducer: reducerTodoList,
-    },
-  ],
-  sagasToInject: [
-    // {
-    //   name: GET_TODO_LIST_DATA_WATCHER_SAGA_NAME,
-    //   saga: getTodoListDataWatcherSaga,
-    // },
-    {
-      name: UPDATE_ITEM_WATCHER_SAGA_NAME,
-      saga: updateItemWatcherSaga,
-    },
-    {
-      name: DELETE_ITEM_WATCHER_SAGA_NAME,
-      saga: deleteItemWatcherSaga,
     },
   ],
 });

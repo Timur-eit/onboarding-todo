@@ -16,12 +16,10 @@ import {
   TListItem,
 } from "@/pages/todo-list/_redux/todo-list/types";
 import {
-  deleteItemAction,
   getListData,
   setErrorsAction,
   setListAction,
   setLoadingsAction,
-  updateItemAction,
 } from "@/pages/todo-list/_redux/todo-list";
 import { todoLocalizationMap as i18nMap } from "../../_localization/localization-map";
 import { CREATE_ITEM_PAGE_PAGE_NODE } from "../../children/create-list-item/_constants";
@@ -41,7 +39,6 @@ type TState = {
 };
 
 type TDispatch = {
-  deleteItem: typeof deleteItemAction;
   setList: typeof setListAction;
   setErrors: typeof setErrorsAction;
   setLoadings: typeof setLoadingsAction;
@@ -53,14 +50,7 @@ type TProps = {
   TDispatch;
 
 const ListWrapper = memo(
-  ({
-    listData,
-    router,
-    deleteItem,
-    setList,
-    setErrors,
-    setLoadings,
-  }: TProps) => {
+  ({ listData, router, setList, setErrors, setLoadings }: TProps) => {
     const [selected, setSelected] = useState("");
 
     const createHandler = useCallback(
@@ -73,31 +63,22 @@ const ListWrapper = memo(
       []
     );
 
-    // const handleDelete = useCallback(
-    //   (id: string) => {
-    //     deleteItem({ id });
-    //   },
-    //   [deleteItem],
-    // );
-    const handleDelete = useCallback(
-      async (id: string) => {
-        setErrors({ [ETodoErrors.DELETE_ITEM]: false });
-        setLoadings({ [ETodoLoadings.DELETE_ITEM]: true });
-        try {
-          const { error, errorText } = await deleteTodoItem({ id });
-          if (error) {
-            throw new Error(errorText || "delete item network error");
-          }
-
-          setActualListToStore({ setList, setErrors, setLoadings });
-        } catch (error) {
-          setErrors({ [ETodoErrors.DELETE_ITEM]: true });
-        } finally {
-          setLoadings({ [ETodoLoadings.DELETE_ITEM]: false });
+    const handleDelete = useCallback(async (id: string) => {
+      setErrors({ [ETodoErrors.DELETE_ITEM]: false });
+      setLoadings({ [ETodoLoadings.DELETE_ITEM]: true });
+      try {
+        const { error, errorText } = await deleteTodoItem({ id });
+        if (error) {
+          throw new Error(errorText || "delete item network error");
         }
-      },
-      [deleteItem]
-    );
+
+        setActualListToStore({ setList, setErrors, setLoadings });
+      } catch (error) {
+        setErrors({ [ETodoErrors.DELETE_ITEM]: true });
+      } finally {
+        setLoadings({ [ETodoLoadings.DELETE_ITEM]: false });
+      }
+    }, []);
 
     useEffect(() => {
       if (selected) {
@@ -132,10 +113,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  deleteItem: deleteItemAction,
   setErrors: setErrorsAction,
   setLoadings: setLoadingsAction,
-  updateItem: updateItemAction,
   setList: setListAction,
 };
 
