@@ -2,7 +2,7 @@ import i18next from 'i18next';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
 import { ItemFormFieldNames, TItemFormValues } from './types';
 
-export type TTodoValidationErrorMessages = {
+type TTodoValidationErrorMessages = {
   [key in ItemFormFieldNames]?: {
     required: string;
   };

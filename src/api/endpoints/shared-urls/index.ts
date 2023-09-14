@@ -1,6 +1,5 @@
-export const ENDPOINT_EU_PORTAL_DEV = '';
-// export const ENDPOINT_EU_PORTAL_PROD = process.env.ENDPOINT_EU_PORTAL;
-export const ENDPOINT_EU_PORTAL_PROD =
+const ENDPOINT_EU_PORTAL_DEV = '';
+const ENDPOINT_EU_PORTAL_PROD =
   'http://suppliers.suppliers-portal-eu.svc.k8s.test';
 
 export const getPortalEuEndpoint = (): string =>
@@ -8,4 +7,5 @@ export const getPortalEuEndpoint = (): string =>
     ? ENDPOINT_EU_PORTAL_DEV
     : ENDPOINT_EU_PORTAL_PROD;
 
+// eslint-disable-next-line import/no-unused-modules
 export const translationsEndpoint = `${getPortalEuEndpoint()}/I18N`;

@@ -13,10 +13,10 @@ import {
   ETodoLoadings,
   ETodoErrors,
 } from '../_redux/todo-list';
-import styles from './index.module.scss';
 import { ConnectedList } from './_components/list';
 import { todoLocalizationMap as i18nKeyMap } from './_localization/localization-map';
 import { ConnectedEditModal } from './_components/list/_components/connected-edit-modal';
+import styles from './index.module.scss';
 
 const BLOCK_NAME = 'Home-page';
 const cn = classnames.bind(styles);

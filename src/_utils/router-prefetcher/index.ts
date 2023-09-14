@@ -6,6 +6,7 @@ type ParamsType = {
   router: Router;
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export const routerPrefetcher = ({ router, routeName }: ParamsType) => {
   const { routes } = router.getDependencies();
 

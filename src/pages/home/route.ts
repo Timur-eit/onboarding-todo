@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unused-modules
 export default {
   name: 'home',
   path: '/home',
