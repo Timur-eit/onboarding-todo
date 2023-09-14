@@ -30,7 +30,7 @@ export const initialState: TTodoListState = {
   editItemId: null,
 };
 
-export type TActions = ReturnType<
+type TActions = ReturnType<
   | typeof setErrorsAction
   | typeof setListAction
   | typeof setLoadingsAction

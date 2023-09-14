@@ -15,7 +15,7 @@ type TDispatch = {
 
 type TProps = { itemId: string } & TDispatch;
 
-export const EditButtonWrapper = memo(
+const EditButtonWrapper = memo(
   ({ itemId, setEditItemId, setEditModalOpen }: TProps) => {
     const handleClick = useCallback(() => {
       setEditModalOpen(true);

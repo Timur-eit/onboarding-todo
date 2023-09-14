@@ -17,7 +17,7 @@ type TDispatch = {
 
 type TProps = { router: Router } & TDispatch;
 
-export const CreateItemWrapper = memo(({ router, createNewItem }: TProps) => {
+const CreateItemWrapper = memo(({ router, createNewItem }: TProps) => {
   const handleCancel = useCallback(
     () => router.navigate(TODO_LIST_PAGE_NAME),
     [router],

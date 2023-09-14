@@ -39,7 +39,7 @@ type TProps = {
 } & TState &
   TDispatch;
 
-export const ListWrapper = memo(({ listData, router, deleteItem }: TProps) => {
+const ListWrapper = memo(({ listData, router, deleteItem }: TProps) => {
   const [selected, setSelected] = useState('');
 
   const createHandler = useCallback(
