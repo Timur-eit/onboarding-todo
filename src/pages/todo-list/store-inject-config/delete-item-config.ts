@@ -1,6 +1,7 @@
 import {
   IAdvancedStore,
   InitLoadManagerRequestOptionsType,
+  initLoadManagerActionSaga,
 } from '@mihanizm56/redux-core-modules';
 import { Dispatch } from 'redux';
 import { batchActions } from 'redux-batched-actions';
@@ -9,7 +10,6 @@ import { TTodoItemDeleteBodyType } from '@/api/requests/delete-todo-item/make-re
 import {
   ETodoErrors,
   ETodoLoadings,
-  initLoadManagerAction,
   setEditIItemIdAction,
   setEditModalOpenAction,
   setErrorsAction,
@@ -24,7 +24,7 @@ const callBackOnSuccess = (params: {
 }) => {
   batchActions([
     params.dispatch(
-      initLoadManagerAction({ requestConfigList: [getListConfig()] }),
+      initLoadManagerActionSaga({ requestConfigList: [getListConfig()] }),
     ),
     params.dispatch(setEditModalOpenAction(false)),
     params.dispatch(setEditIItemIdAction(null)),
