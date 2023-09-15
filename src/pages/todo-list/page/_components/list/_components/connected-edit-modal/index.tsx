@@ -12,17 +12,15 @@ import {
   getIsOpen,
   getListItem,
   getLoadings,
+  initLoadManagerAction,
   setEditIItemIdAction,
   setEditModalOpenAction,
-  setErrorsAction,
-  setListAction,
-  setLoadingsAction,
 } from '@/pages/todo-list/_redux/todo-list';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
-import { updateTodoItem } from '@/api/requests/update-todo-item';
+import { updateListConfig } from '@/pages/todo-list/store-inject-config/update-list-config';
 import { TItemFormValues } from '../_view-components/item-form/types';
 import { EditModalContentView } from '../_view-components/edit-modal-content';
-import { setActualListToStore } from '../../_utils/set-actual-list-to-store';
+import { getUpdateRequestBody } from '../../_utils/get-update-request-body';
 import styles from './index.module.scss';
 
 const COMPONENT_STYLE_NAME = 'EditModal';
@@ -38,9 +36,7 @@ type TState = {
 type TDispatch = {
   setEditModalOpen: typeof setEditModalOpenAction;
   setEditItemId: typeof setEditIItemIdAction;
-  setList: typeof setListAction;
-  setErrors: typeof setErrorsAction;
-  setLoadings: typeof setLoadingsAction;
+  initLoadManager: typeof initLoadManagerAction;
 };
 
 type TProps = TState & TDispatch;
@@ -52,9 +48,7 @@ const ConnectedEditModalWrapper = ({
   setEditItemId,
   loadings,
   errors,
-  setList,
-  setErrors,
-  setLoadings,
+  initLoadManager,
 }: TProps) => {
   const isLoading = loadings[ETodoLoadings.UPDATE_ITEM];
   const isError = errors[ETodoErrors.UPDATE_ITEM];
@@ -65,38 +59,18 @@ const ConnectedEditModalWrapper = ({
   );
 
   const handleSubmit = useCallback(
-    async ({ title, description }: TItemFormValues) => {
+    (formValues: TItemFormValues) => {
       if (listItem) {
-        setErrors({ [ETodoErrors.UPDATE_ITEM]: false });
-        setLoadings({ [ETodoLoadings.UPDATE_ITEM]: true });
-        try {
-          const { error, errorText } = await updateTodoItem({
-            id: listItem.id,
-            title,
-            description,
-          });
-
-          if (error) {
-            throw new Error(errorText || 'update item network error');
-          }
-          setEditModalOpen(false);
-          setEditItemId(null);
-          setActualListToStore({ setList, setErrors, setLoadings });
-        } catch (error) {
-          setErrors({ [ETodoErrors.UPDATE_ITEM]: true });
-        } finally {
-          setLoadings({ [ETodoLoadings.UPDATE_ITEM]: false });
-        }
+        initLoadManager({
+          requestConfigList: [
+            updateListConfig(
+              getUpdateRequestBody({ initItemData: listItem, formValues }),
+            ),
+          ],
+        });
       }
     },
-    [
-      listItem,
-      setEditItemId,
-      setEditModalOpen,
-      setErrors,
-      setList,
-      setLoadings,
-    ],
+    [initLoadManager, listItem],
   );
 
   const handleCancel = useCallback(() => {
@@ -134,9 +108,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   setEditModalOpen: setEditModalOpenAction,
   setEditItemId: setEditIItemIdAction,
-  setErrors: setErrorsAction,
-  setLoadings: setLoadingsAction,
-  setList: setListAction,
+  initLoadManager: initLoadManagerAction,
 };
 
 export const ConnectedEditModal = connect(

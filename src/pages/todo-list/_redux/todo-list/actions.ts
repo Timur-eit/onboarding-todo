@@ -1,4 +1,7 @@
-import { IReduxAction } from '@mihanizm56/redux-core-modules';
+import {
+  IReduxAction,
+  InitLoadManagerActionPayloadType,
+} from '@mihanizm56/redux-core-modules';
 import { TTodoListState, TListItem, TCreateItemPayload } from './types';
 
 export const SET_LOADINGS = 'SET_LOADINGS';
@@ -59,3 +62,13 @@ export const setEditIItemIdAction: IReduxAction<
   payload,
 });
 setEditIItemIdAction.type = SET_EDIT_ITEM_ID;
+
+export const INIT_LOAD_MANAGER = 'INIT_LOAD_MANAGER';
+export const initLoadManagerAction: IReduxAction<
+  InitLoadManagerActionPayloadType,
+  typeof INIT_LOAD_MANAGER
+> = (payload) => ({
+  type: INIT_LOAD_MANAGER,
+  payload,
+});
+initLoadManagerAction.type = INIT_LOAD_MANAGER;

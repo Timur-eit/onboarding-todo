@@ -3,8 +3,8 @@ import { responseSchema } from './response-schema';
 
 export type TTodoItemUpdateBody = {
   id: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 };
 
 export const makeRequestConfig = (todoItemBody: TTodoItemUpdateBody) => ({
