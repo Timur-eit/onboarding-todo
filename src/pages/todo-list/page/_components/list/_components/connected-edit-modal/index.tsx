@@ -19,7 +19,7 @@ import {
   setLoadingsAction,
 } from '@/pages/todo-list/_redux/todo-list';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
-import { updateTodoItem } from '@/api/requests/update-todo-etem';
+import { updateTodoItem } from '@/api/requests/update-todo-item';
 import { TItemFormValues } from '../_view-components/item-form/types';
 import { EditModalContentView } from '../_view-components/edit-modal-content';
 import { setActualListToStore } from '../../_utils/set-actual-list-to-store';

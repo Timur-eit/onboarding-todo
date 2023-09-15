@@ -21,7 +21,7 @@ import {
   setListAction,
   setLoadingsAction,
 } from '@/pages/todo-list/_redux/todo-list';
-import { deleteTodoItem } from '@/api/requests/delete-todo-etem';
+import { deleteTodoItem } from '@/api/requests/delete-todo-item';
 import { todoLocalizationMap as i18nMap } from '../../_localization/localization-map';
 import { CREATE_ITEM_PAGE_PAGE_NODE } from '../../children/create-list-item/_constants';
 import { ListItemContent } from './_components/list-item-content';
