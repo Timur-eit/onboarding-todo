@@ -1,5 +1,5 @@
 import 'fast-text-encoding/text';
-/* 
+/*
     if you need some polyfills and you are not in "rus" or "euro" version
     please insert below (package is included)
     import 'react-app-polyfill/stable';
@@ -12,7 +12,6 @@ import {
   getLocale,
   getI18nextRequestEndpoint,
 } from '@wildberries/i18next-utils';
-import { getLanguageFromCookie } from '@portals/v3-utils';
 import i18next from 'i18next';
 import { createAppStore } from '@mihanizm56/redux-core-modules';
 import { configureRouter } from '@wildberries/service-router';
@@ -69,7 +68,7 @@ const store = createAppStore({
 });
 
 const i18nextConfig = {
-  getLocale,
+  getLocale: () => getLocale({ isFromCookie: true }),
   i18next,
   i18nextRequest,
   actionToStartLoading: starti18nextLoadingAction,
@@ -88,7 +87,7 @@ router.add(routes);
 
 geti18Next({
   appNamespace: APP_NAMESPACE,
-  locale: getLanguageFromCookie(),
+  locale: getLocale({ isFromCookie: true }),
 }).then(() =>
   router.start(() => {
     ReactDOM.render(

@@ -8,8 +8,15 @@ export default {
   path: TODO_LIST_PAGE_PATH,
   loadAction: () => import('./index'),
   children: [createNewListItem],
+  params: {
+    endpointsConfig: {
+      fromWindow: true,
+      staticPath: 'publicPathForReplace',
+    },
+  },
   i18n: {
     namespaces: [APP_NAMESPACE],
+    version: 'appVersion',
     localDictionaryFiles: I18N_DICTIONARY,
   },
 };
