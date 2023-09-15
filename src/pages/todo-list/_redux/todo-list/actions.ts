@@ -1,15 +1,9 @@
-import { BaseAction, IReduxAction } from "@mihanizm56/redux-core-modules";
-import {
-  TTodoListState,
-  TListItem,
-  TCreateItemPayload,
-  TUpdateItemPayload,
-  TDeleteItemPayload,
-} from "./types";
+import { IReduxAction } from '@mihanizm56/redux-core-modules';
+import { TTodoListState, TListItem, TCreateItemPayload } from './types';
 
-export const SET_LOADINGS = "SET_LOADINGS";
+export const SET_LOADINGS = 'SET_LOADINGS';
 export const setLoadingsAction: IReduxAction<
-  TTodoListState["loadings"],
+  TTodoListState['loadings'],
   typeof SET_LOADINGS
 > = (payload) => ({
   type: SET_LOADINGS,
@@ -17,9 +11,9 @@ export const setLoadingsAction: IReduxAction<
 });
 setLoadingsAction.type = SET_LOADINGS;
 
-export const SET_ERRORS = "SET_ERRORS";
+export const SET_ERRORS = 'SET_ERRORS';
 export const setErrorsAction: IReduxAction<
-  TTodoListState["errors"],
+  TTodoListState['errors'],
   typeof SET_ERRORS
 > = (payload) => ({
   type: SET_ERRORS,
@@ -27,16 +21,16 @@ export const setErrorsAction: IReduxAction<
 });
 setErrorsAction.type = SET_ERRORS;
 
-export const SET_LIST = "SET_LIST";
+export const SET_LIST = 'SET_LIST';
 export const setListAction: IReduxAction<TListItem[], typeof SET_LIST> = (
-  payload
+  payload,
 ) => ({
   type: SET_LIST,
   payload,
 });
 setListAction.type = SET_LIST;
 
-export const CREATE_ITEM = "CREATE_ITEM";
+export const CREATE_ITEM = 'CREATE_ITEM';
 export const createItemAction: IReduxAction<
   TCreateItemPayload,
   typeof CREATE_ITEM
@@ -46,7 +40,7 @@ export const createItemAction: IReduxAction<
 });
 createItemAction.type = CREATE_ITEM;
 
-export const SET_EDIT_MODAL_OPEN = "SET_EDIT_MODAL_OPEN";
+export const SET_EDIT_MODAL_OPEN = 'SET_EDIT_MODAL_OPEN';
 export const setEditModalOpenAction: IReduxAction<
   boolean,
   typeof SET_EDIT_MODAL_OPEN
@@ -56,7 +50,7 @@ export const setEditModalOpenAction: IReduxAction<
 });
 setEditModalOpenAction.type = SET_EDIT_MODAL_OPEN;
 
-export const SET_EDIT_ITEM_ID = "SET_EDIT_ITEM_ID";
+export const SET_EDIT_ITEM_ID = 'SET_EDIT_ITEM_ID';
 export const setEditIItemIdAction: IReduxAction<
   string,
   typeof SET_EDIT_ITEM_ID

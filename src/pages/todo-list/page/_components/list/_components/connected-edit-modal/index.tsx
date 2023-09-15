@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
-import { connect } from "react-redux";
-import { Modal } from "@wildberries/ui-kit";
-import classnames from "classnames/bind";
-import i18next from "i18next";
+import React, { useCallback } from 'react';
+import { connect } from 'react-redux';
+import { Modal } from '@wildberries/ui-kit';
+import classnames from 'classnames/bind';
+import i18next from 'i18next';
 import {
   ETodoErrors,
   ETodoLoadings,
@@ -17,22 +17,22 @@ import {
   setErrorsAction,
   setListAction,
   setLoadingsAction,
-} from "@/pages/todo-list/_redux/todo-list";
-import { todoLocalizationMap as i18nKeyMap } from "@/pages/todo-list/page/_localization/localization-map";
-import { TItemFormValues } from "../_view-components/item-form/types";
-import { EditModalContentView } from "../_view-components/edit-modal-content";
-import styles from "./index.module.scss";
-import { updateTodoItem } from "@/api/requests/update-todo-etem";
-import { setActualListToStore } from "../../_utils/set-actual-list-to-store";
+} from '@/pages/todo-list/_redux/todo-list';
+import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
+import { updateTodoItem } from '@/api/requests/update-todo-etem';
+import { TItemFormValues } from '../_view-components/item-form/types';
+import { EditModalContentView } from '../_view-components/edit-modal-content';
+import { setActualListToStore } from '../../_utils/set-actual-list-to-store';
+import styles from './index.module.scss';
 
-const COMPONENT_STYLE_NAME = "EditModal";
+const COMPONENT_STYLE_NAME = 'EditModal';
 const cn = classnames.bind(styles);
 
 type TState = {
   isOpen: boolean;
   listItem: TListItem;
-  loadings: TTodoListState["loadings"];
-  errors: TTodoListState["errors"];
+  loadings: TTodoListState['loadings'];
+  errors: TTodoListState['errors'];
 };
 
 type TDispatch = {
@@ -61,7 +61,7 @@ const ConnectedEditModalWrapper = ({
 
   const handleClose = useCallback(
     () => setEditModalOpen(false),
-    [setEditModalOpen]
+    [setEditModalOpen],
   );
 
   const handleSubmit = useCallback(
@@ -77,7 +77,7 @@ const ConnectedEditModalWrapper = ({
           });
 
           if (error) {
-            throw new Error(errorText || "update item network error");
+            throw new Error(errorText || 'update item network error');
           }
           setEditModalOpen(false);
           setEditItemId(null);
@@ -89,7 +89,14 @@ const ConnectedEditModalWrapper = ({
         }
       }
     },
-    [listItem]
+    [
+      listItem,
+      setEditItemId,
+      setEditModalOpen,
+      setErrors,
+      setList,
+      setLoadings,
+    ],
   );
 
   const handleCancel = useCallback(() => {
@@ -134,5 +141,5 @@ const mapDispatchToProps = {
 
 export const ConnectedEditModal = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ConnectedEditModalWrapper);

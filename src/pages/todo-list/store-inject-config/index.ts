@@ -1,10 +1,10 @@
 import {
   IAdvancedStore,
   StoreInjectConfig,
-} from "@mihanizm56/redux-core-modules";
-import { Dispatch } from "redux";
-import { getTodoList } from "@/api/requests/get-todo-list-all";
-import reducerTodoList from "../_redux/todo-list/reducer";
+} from '@mihanizm56/redux-core-modules';
+import { Dispatch } from 'redux';
+import { getTodoList } from '@/api/requests/get-todo-list-all';
+import reducerTodoList from '../_redux/todo-list/reducer';
 import {
   ETodoErrors,
   ETodoLoadings,
@@ -12,7 +12,7 @@ import {
   setErrorsAction,
   setListAction,
   setLoadingsAction,
-} from "../_redux/todo-list";
+} from '../_redux/todo-list';
 
 type TParams = {
   store: IAdvancedStore;

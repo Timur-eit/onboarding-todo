@@ -12,6 +12,7 @@ import {
   getLocale,
   getI18nextRequestEndpoint,
 } from '@wildberries/i18next-utils';
+import { getLanguageFromCookie } from '@portals/v3-utils';
 import i18next from 'i18next';
 import { createAppStore } from '@mihanizm56/redux-core-modules';
 import { configureRouter } from '@wildberries/service-router';
@@ -40,8 +41,11 @@ import 'normalize.css';
 import '@/styles/global.css';
 import '@/styles/variables.module.scss';
 import { TODO_LIST_PAGE_NAME } from './pages/todo-list/page/_constants';
+import { setLocaleCooke } from './_utils/set-locale-cookie';
 
 const ROOT_ELEMENT = document.getElementById('root');
+
+setLocaleCooke();
 
 const router = configureRouter({
   defaultRoute: TODO_LIST_PAGE_NAME,
@@ -82,7 +86,10 @@ router.setDependencies({
 
 router.add(routes);
 
-geti18Next({ appNamespace: APP_NAMESPACE, locale: getLocale() }).then(() =>
+geti18Next({
+  appNamespace: APP_NAMESPACE,
+  locale: getLanguageFromCookie(),
+}).then(() =>
   router.start(() => {
     ReactDOM.render(
       <Provider store={store}>

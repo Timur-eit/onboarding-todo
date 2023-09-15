@@ -13,6 +13,7 @@
     "@mihanizm56/validators": "1.2.2-beta.3",
     "@mihanizm56/webpack-magic-redux-modules": "0.0.7",
     "@mihanizm56/webpack-stream-watcher": "2.0.0",
+    "@portals/v3-utils": "https://gitlab.wildberries.ru/api/v4/projects/5260/packages/npm/@portals/v3-utils/-/@portals/v3-utils-0.0.38.tgz",
     "@ravilm/databus": "1.0.2",
     "@ravilm/databus-react": "1.0.2",
     "@wildberries/confirm-modal-portal": "0.1.5",
