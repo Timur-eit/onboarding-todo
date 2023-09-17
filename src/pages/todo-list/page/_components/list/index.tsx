@@ -10,11 +10,9 @@ import i18next from 'i18next';
 import { compose } from 'redux';
 import { withRouter } from 'react-router5';
 import { Router } from 'router5';
+import { initLoadManagerActionSaga } from '@mihanizm56/redux-core-modules';
 import { TListItem } from '@/pages/todo-list/_redux/todo-list/types';
-import {
-  getListData,
-  initLoadManagerAction,
-} from '@/pages/todo-list/_redux/todo-list';
+import { getListData } from '@/pages/todo-list/_redux/todo-list';
 import { deleteItemConfig } from '@/pages/todo-list/store-inject-config/delete-item-config';
 import { todoLocalizationMap as i18nMap } from '../../_localization/localization-map';
 import { CREATE_ITEM_PAGE_PAGE_NODE } from '../../children/create-list-item/_constants';
@@ -32,7 +30,7 @@ type TState = {
 };
 
 type TDispatch = {
-  initLoadManager: typeof initLoadManagerAction;
+  initLoadManager: typeof initLoadManagerActionSaga;
 };
 
 type TProps = {
@@ -92,7 +90,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  initLoadManager: initLoadManagerAction,
+  initLoadManager: initLoadManagerActionSaga,
 };
 
 export const ConnectedList = compose(

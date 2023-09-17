@@ -1,4 +1,3 @@
-import { InitLoadManagerActionPayloadType } from '@mihanizm56/redux-core-modules';
 import { Router } from 'router5';
 
 export enum ETodoLoadings {
@@ -42,8 +41,4 @@ export type TDeleteItemPayload = Pick<TListItem, 'id'>;
 export type TCreateItemActionSaga = {
   type: string;
   payload: TCreateItemPayload;
-};
-export type TInitLoadManagerActionSaga = {
-  type: string;
-  payload: InitLoadManagerActionPayloadType;
 };

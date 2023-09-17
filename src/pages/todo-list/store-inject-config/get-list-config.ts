@@ -21,7 +21,6 @@ const callBackOnSuccess = (params: {
 const callBackOnError = (params: {
   dispatch: Dispatch;
   store: IAdvancedStore;
-  error: any;
 }) => params.dispatch(setErrorsAction({ [ETodoErrors.GET_ALL]: true }));
 
 export const getListConfig = (): InitLoadManagerRequestOptionsType => ({

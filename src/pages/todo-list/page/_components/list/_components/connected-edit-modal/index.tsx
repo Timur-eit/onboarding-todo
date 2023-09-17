@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Modal } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
 import i18next from 'i18next';
+import { initLoadManagerActionSaga } from '@mihanizm56/redux-core-modules';
 import {
   ETodoErrors,
   ETodoLoadings,
@@ -12,7 +13,6 @@ import {
   getIsOpen,
   getListItem,
   getLoadings,
-  initLoadManagerAction,
   setEditIItemIdAction,
   setEditModalOpenAction,
 } from '@/pages/todo-list/_redux/todo-list';
@@ -36,7 +36,7 @@ type TState = {
 type TDispatch = {
   setEditModalOpen: typeof setEditModalOpenAction;
   setEditItemId: typeof setEditIItemIdAction;
-  initLoadManager: typeof initLoadManagerAction;
+  initLoadManager: typeof initLoadManagerActionSaga;
 };
 
 type TProps = TState & TDispatch;
@@ -108,7 +108,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   setEditModalOpen: setEditModalOpenAction,
   setEditItemId: setEditIItemIdAction,
-  initLoadManager: initLoadManagerAction,
+  initLoadManager: initLoadManagerActionSaga,
 };
 
 export const ConnectedEditModal = connect(
