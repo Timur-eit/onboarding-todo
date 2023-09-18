@@ -10,7 +10,7 @@ import { storeInjectConfig } from './store-inject-config';
 
 const pageNode = TODO_LIST_PAGE_NAME;
 
-const action = async ({ store, toState, fromState }) => ({
+const action = async ({ toState, fromState }) => ({
   title: i18next.t(i18nKeyMap.titles.list),
   content: (
     <AppLayout>
@@ -20,7 +20,7 @@ const action = async ({ store, toState, fromState }) => ({
             return (
               <ReduxStoreLoader
                 fromState={fromState}
-                storeInjectConfig={storeInjectConfig({ store })}
+                storeInjectConfig={storeInjectConfig()}
                 toState={toState}
               >
                 <ListPage />

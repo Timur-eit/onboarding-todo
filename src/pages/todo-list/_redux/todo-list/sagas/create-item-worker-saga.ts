@@ -1,5 +1,5 @@
 import { all, call, put } from 'redux-saga/effects';
-import { createTodoItem } from '@/api/requests/create-todo-etem';
+import { createTodoItem } from '@/api/requests/create-todo-item';
 import { TODO_LIST_PAGE_NAME } from '@/pages/todo-list/page/_constants';
 import { setErrorsAction, setLoadingsAction } from '../actions';
 import { ETodoErrors, ETodoLoadings, TCreateItemActionSaga } from '../types';

@@ -1,11 +1,5 @@
-import { BaseAction, IReduxAction } from '@mihanizm56/redux-core-modules';
-import {
-  TTodoListState,
-  TListItem,
-  TCreateItemPayload,
-  TUpdateItemPayload,
-  TDeleteItemPayload,
-} from './types';
+import { IReduxAction } from '@mihanizm56/redux-core-modules';
+import { TTodoListState, TListItem, TCreateItemPayload } from './types';
 
 export const SET_LOADINGS = 'SET_LOADINGS';
 export const setLoadingsAction: IReduxAction<
@@ -26,11 +20,6 @@ export const setErrorsAction: IReduxAction<
   payload,
 });
 setErrorsAction.type = SET_ERRORS;
-
-export const GET_LIST = 'GET_LIST';
-export const getListAction: BaseAction = () => ({
-  type: GET_LIST,
-});
 
 export const SET_LIST = 'SET_LIST';
 export const setListAction: IReduxAction<TListItem[], typeof SET_LIST> = (
@@ -70,23 +59,3 @@ export const setEditIItemIdAction: IReduxAction<
   payload,
 });
 setEditIItemIdAction.type = SET_EDIT_ITEM_ID;
-
-export const UPDATE_ITEM = 'UPDATE_ITEM';
-export const updateItemAction: IReduxAction<
-  TUpdateItemPayload,
-  typeof UPDATE_ITEM
-> = (payload) => ({
-  type: UPDATE_ITEM,
-  payload,
-});
-updateItemAction.type = UPDATE_ITEM;
-
-export const DELETE_ITEM = 'DELETE_ITEM';
-export const deleteItemAction: IReduxAction<
-  TDeleteItemPayload,
-  typeof DELETE_ITEM
-> = (payload) => ({
-  type: DELETE_ITEM,
-  payload,
-});
-deleteItemAction.type = DELETE_ITEM;

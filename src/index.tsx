@@ -1,5 +1,5 @@
 import 'fast-text-encoding/text';
-/* 
+/*
     if you need some polyfills and you are not in "rus" or "euro" version
     please insert below (package is included)
     import 'react-app-polyfill/stable';
@@ -40,8 +40,11 @@ import 'normalize.css';
 import '@/styles/global.css';
 import '@/styles/variables.module.scss';
 import { TODO_LIST_PAGE_NAME } from './pages/todo-list/page/_constants';
+import { setLocaleCooke } from './_utils/set-locale-cookie';
 
 const ROOT_ELEMENT = document.getElementById('root');
+
+setLocaleCooke();
 
 const router = configureRouter({
   defaultRoute: TODO_LIST_PAGE_NAME,
@@ -65,7 +68,7 @@ const store = createAppStore({
 });
 
 const i18nextConfig = {
-  getLocale,
+  getLocale: () => getLocale({ isFromCookie: true }),
   i18next,
   i18nextRequest,
   actionToStartLoading: starti18nextLoadingAction,
@@ -82,7 +85,10 @@ router.setDependencies({
 
 router.add(routes);
 
-geti18Next({ appNamespace: APP_NAMESPACE, locale: getLocale() }).then(() =>
+geti18Next({
+  appNamespace: APP_NAMESPACE,
+  locale: getLocale({ isFromCookie: true }),
+}).then(() =>
   router.start(() => {
     ReactDOM.render(
       <Provider store={store}>

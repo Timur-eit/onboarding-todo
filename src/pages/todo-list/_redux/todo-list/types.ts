@@ -42,11 +42,3 @@ export type TCreateItemActionSaga = {
   type: string;
   payload: TCreateItemPayload;
 };
-export type TUpdateItemActionSaga = {
-  type: string;
-  payload: TUpdateItemPayload;
-};
-export type TDeleteItemActionSaga = {
-  type: string;
-  payload: TUpdateItemPayload;
-};

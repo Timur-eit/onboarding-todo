@@ -55,10 +55,15 @@ const createItem = async (body) => {
 };
 const updateItem = async (body) => {
   const { id, title, description } = body;
-  const item = await todoDataBase
-    .find({ id })
-    .assign({ title, description })
-    .write();
+  const assignedValues = {};
+  if (title) {
+    assignedValues.title = title;
+  }
+  if (description) {
+    assignedValues.description = description;
+  }
+
+  const item = await todoDataBase.find({ id }).assign(assignedValues).write();
 
   return item;
 };

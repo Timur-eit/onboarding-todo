@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Modal } from '@wildberries/ui-kit';
 import classnames from 'classnames/bind';
 import i18next from 'i18next';
+import { initLoadManagerActionSaga } from '@mihanizm56/redux-core-modules';
 import {
   ETodoErrors,
   ETodoLoadings,
@@ -14,11 +15,12 @@ import {
   getLoadings,
   setEditIItemIdAction,
   setEditModalOpenAction,
-  updateItemAction,
 } from '@/pages/todo-list/_redux/todo-list';
 import { todoLocalizationMap as i18nKeyMap } from '@/pages/todo-list/page/_localization/localization-map';
+import { updateListConfig } from '@/pages/todo-list/store-inject-config/update-list-config';
 import { TItemFormValues } from '../_view-components/item-form/types';
 import { EditModalContentView } from '../_view-components/edit-modal-content';
+import { getUpdateRequestBody } from '../../_utils/get-update-request-body';
 import styles from './index.module.scss';
 
 const COMPONENT_STYLE_NAME = 'EditModal';
@@ -34,7 +36,7 @@ type TState = {
 type TDispatch = {
   setEditModalOpen: typeof setEditModalOpenAction;
   setEditItemId: typeof setEditIItemIdAction;
-  updateItem: typeof updateItemAction;
+  initLoadManager: typeof initLoadManagerActionSaga;
 };
 
 type TProps = TState & TDispatch;
@@ -46,7 +48,7 @@ const ConnectedEditModalWrapper = ({
   setEditItemId,
   loadings,
   errors,
-  updateItem,
+  initLoadManager,
 }: TProps) => {
   const isLoading = loadings[ETodoLoadings.UPDATE_ITEM];
   const isError = errors[ETodoErrors.UPDATE_ITEM];
@@ -57,12 +59,18 @@ const ConnectedEditModalWrapper = ({
   );
 
   const handleSubmit = useCallback(
-    ({ title, description }: TItemFormValues) => {
+    (formValues: TItemFormValues) => {
       if (listItem) {
-        updateItem({ id: listItem.id, title, description });
+        initLoadManager({
+          requestConfigList: [
+            updateListConfig(
+              getUpdateRequestBody({ initItemData: listItem, formValues }),
+            ),
+          ],
+        });
       }
     },
-    [listItem, updateItem],
+    [initLoadManager, listItem],
   );
 
   const handleCancel = useCallback(() => {
@@ -100,7 +108,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   setEditModalOpen: setEditModalOpenAction,
   setEditItemId: setEditIItemIdAction,
-  updateItem: updateItemAction,
+  initLoadManager: initLoadManagerActionSaga,
 };
 
 export const ConnectedEditModal = connect(
